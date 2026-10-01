@@ -687,21 +687,12 @@
     <div class="arch-svg-wrap">
       <svg viewBox="0 0 720 440" width="720" height="440" xmlns="http://www.w3.org/2000/svg" font-family="'Red Hat Display', system-ui, sans-serif">
         <defs>
-          <marker id="arrowG" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
-            <polygon points="0 0, 10 4, 0 8" fill="#4a8c2a" />
-          </marker>
-          <marker id="arrowB" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
-            <polygon points="0 0, 10 4, 0 8" fill="#2c5aa0" />
-          </marker>
-          <marker id="arrowD" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
-            <polygon points="0 0, 10 4, 0 8" fill="#b8862a" />
-          </marker>
           <filter id="shadow1" x="-6%" y="-8%" width="112%" height="124%">
             <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity="0.10"/>
           </filter>
         </defs>
 
-        <!-- Background grouping lines -->
+        <!-- Background zones -->
         <rect x="30" y="2" width="660" height="72" rx="12" fill="#f0f4ff" stroke="#d0d8e8" stroke-width="1" stroke-dasharray="4,2" opacity="0.5"/>
         <text x="48" y="20" font-size="11" fill="#8899bb" font-weight="600" letter-spacing="0.05em">USER</text>
 
@@ -716,7 +707,8 @@
         <text x="340" y="49" text-anchor="middle" font-size="16" font-weight="700" fill="#333">Browser</text>
 
         <!-- Arrow: Browser → Guacamole -->
-        <line x1="340" y1="68" x2="340" y2="106" stroke="#4a8c2a" stroke-width="2.5" marker-end="url(#arrowG)"/>
+        <line x1="340" y1="68" x2="340" y2="108" stroke="#4a8c2a" stroke-width="3"/>
+        <polygon points="340,112 332,100 348,100" fill="#4a8c2a"/>
 
         <!-- Guacamole Web App -->
         <rect x="205" y="110" width="270" height="54" rx="10" fill="#2d5016" filter="url(#shadow1)"/>
@@ -724,32 +716,37 @@
         <text x="340" y="157" text-anchor="middle" font-size="13" fill="#c6d94e" font-weight="600">:8080</text>
 
         <!-- Arrow: Guacamole → PostgreSQL (right) -->
-        <line x1="475" y1="137" x2="530" y2="137" stroke="#b8862a" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowD)"/>
+        <line x1="475" y1="137" x2="528" y2="137" stroke="#b8862a" stroke-width="2.5" stroke-dasharray="6,3"/>
+        <polygon points="533,137 523,130 523,144" fill="#b8862a"/>
 
         <!-- PostgreSQL -->
         <rect x="535" y="113" width="150" height="48" rx="10" fill="#c8960a" filter="url(#shadow1)"/>
         <text x="610" y="143" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">PostgreSQL</text>
 
         <!-- Arrow: Guacamole → guacd -->
-        <line x1="340" y1="164" x2="340" y2="206" stroke="#4a8c2a" stroke-width="2.5" marker-end="url(#arrowG)"/>
+        <line x1="340" y1="164" x2="340" y2="208" stroke="#4a8c2a" stroke-width="3"/>
+        <polygon points="340,212 332,200 348,200" fill="#4a8c2a"/>
 
         <!-- guacd -->
         <rect x="230" y="210" width="220" height="54" rx="10" fill="#4a8c2a" filter="url(#shadow1)"/>
         <text x="340" y="240" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">guacd</text>
         <text x="340" y="257" text-anchor="middle" font-size="13" fill="#c6d94e" font-weight="600">:4822</text>
 
-        <!-- Fork: guacd → RDP (left) -->
-        <path d="M 290,264 L 290,298 Q 290,308 280,308 L 195,308 L 195,322" fill="none" stroke="#2c5aa0" stroke-width="2.5" marker-end="url(#arrowB)"/>
+        <!-- Fork line: guacd → RDP (left) -->
+        <path d="M 290,264 L 290,298 Q 290,308 280,308 L 195,308 L 195,320" fill="none" stroke="#2c5aa0" stroke-width="3"/>
+        <polygon points="195,326 187,314 203,314" fill="#2c5aa0"/>
 
-        <!-- Fork: guacd → SSH (right) -->
-        <path d="M 390,264 L 390,298 Q 390,308 400,308 L 485,308 L 485,322" fill="none" stroke="#4a8c2a" stroke-width="2.5" marker-end="url(#arrowG)"/>
+        <!-- Fork line: guacd → SSH (right) -->
+        <path d="M 390,264 L 390,298 Q 390,308 400,308 L 485,308 L 485,320" fill="none" stroke="#4a8c2a" stroke-width="3"/>
+        <polygon points="485,326 477,314 493,314" fill="#4a8c2a"/>
 
         <!-- RDP protocol badge -->
         <rect x="125" y="326" width="140" height="42" rx="10" fill="#2c5aa0" filter="url(#shadow1)"/>
         <text x="195" y="353" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">RDP :3389</text>
 
         <!-- Arrow: RDP → Workstation -->
-        <line x1="195" y1="368" x2="195" y2="392" stroke="#2c5aa0" stroke-width="2.5" marker-end="url(#arrowB)"/>
+        <line x1="195" y1="368" x2="195" y2="392" stroke="#2c5aa0" stroke-width="3"/>
+        <polygon points="195,398 187,386 203,386" fill="#2c5aa0"/>
 
         <!-- RHEL Workstation -->
         <rect x="95" y="396" width="200" height="34" rx="8" fill="#fff" stroke="#2c5aa0" stroke-width="2" filter="url(#shadow1)"/>
@@ -760,7 +757,8 @@
         <text x="485" y="353" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">SSH :22</text>
 
         <!-- Arrow: SSH → Server -->
-        <line x1="485" y1="368" x2="485" y2="392" stroke="#4a8c2a" stroke-width="2.5" marker-end="url(#arrowG)"/>
+        <line x1="485" y1="368" x2="485" y2="392" stroke="#4a8c2a" stroke-width="3"/>
+        <polygon points="485,398 477,386 493,386" fill="#4a8c2a"/>
 
         <!-- RHEL Server -->
         <rect x="395" y="396" width="180" height="34" rx="8" fill="#fff" stroke="#2d5016" stroke-width="2" filter="url(#shadow1)"/>
@@ -1053,26 +1051,26 @@ podman run -d \
       <div class="arch-svg-wrap">
         <svg viewBox="0 0 520 320" width="520" height="320" xmlns="http://www.w3.org/2000/svg" font-family="'Red Hat Display', system-ui, sans-serif">
           <defs>
-            <marker id="arrowRdp" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
-              <polygon points="0 0, 10 4, 0 8" fill="#2c5aa0" />
-            </marker>
             <filter id="sh2" x="-6%" y="-8%" width="112%" height="124%">
               <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.10"/>
             </filter>
           </defs>
           <rect x="150" y="8" width="220" height="46" rx="10" fill="#2c5aa0" filter="url(#sh2)"/>
           <text x="260" y="37" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">RDP Client (Guacamole)</text>
-          <line x1="260" y1="54" x2="260" y2="78" stroke="#2c5aa0" stroke-width="2.5" marker-end="url(#arrowRdp)"/>
+          <line x1="260" y1="54" x2="260" y2="76" stroke="#2c5aa0" stroke-width="3"/>
+          <polygon points="260,82 252,70 268,70" fill="#2c5aa0"/>
           <text x="340" y="72" font-size="12" fill="#666" font-weight="500">TCP/3389</text>
 
           <rect x="120" y="82" width="280" height="46" rx="10" fill="#2d5016" filter="url(#sh2)"/>
           <text x="260" y="111" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">GNOME Remote Desktop</text>
-          <line x1="260" y1="128" x2="260" y2="152" stroke="#2c5aa0" stroke-width="2.5" marker-end="url(#arrowRdp)"/>
+          <line x1="260" y1="128" x2="260" y2="150" stroke="#2c5aa0" stroke-width="3"/>
+          <polygon points="260,156 252,144 268,144" fill="#2c5aa0"/>
           <text x="348" y="146" font-size="12" fill="#666" font-weight="500">Gateway auth</text>
 
           <rect x="185" y="156" width="150" height="46" rx="10" fill="#c8960a" filter="url(#sh2)"/>
           <text x="260" y="185" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">GDM</text>
-          <line x1="260" y1="202" x2="260" y2="226" stroke="#2c5aa0" stroke-width="2.5" marker-end="url(#arrowRdp)"/>
+          <line x1="260" y1="202" x2="260" y2="224" stroke="#2c5aa0" stroke-width="3"/>
+          <polygon points="260,230 252,218 268,218" fill="#2c5aa0"/>
           <text x="336" y="220" font-size="12" fill="#666" font-weight="500">Linux auth</text>
 
           <rect x="110" y="230" width="300" height="46" rx="10" fill="#4a8c2a" filter="url(#sh2)"/>
@@ -1250,21 +1248,20 @@ sudo journalctl -u gnome-remote-desktop.service -n 50 --no-pager</code></pre>
       <div class="arch-svg-wrap">
         <svg viewBox="0 0 440 240" width="440" height="240" xmlns="http://www.w3.org/2000/svg" font-family="'Red Hat Display', system-ui, sans-serif">
           <defs>
-            <marker id="arrowSsh" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
-              <polygon points="0 0, 10 4, 0 8" fill="#4a8c2a" />
-            </marker>
             <filter id="sh3" x="-6%" y="-8%" width="112%" height="124%">
               <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.10"/>
             </filter>
           </defs>
           <rect x="100" y="10" width="240" height="46" rx="10" fill="#2d5016" filter="url(#sh3)"/>
           <text x="220" y="39" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Guacamole (guacd)</text>
-          <line x1="220" y1="56" x2="220" y2="82" stroke="#4a8c2a" stroke-width="2.5" marker-end="url(#arrowSsh)"/>
+          <line x1="220" y1="56" x2="220" y2="80" stroke="#4a8c2a" stroke-width="3"/>
+          <polygon points="220,86 212,74 228,74" fill="#4a8c2a"/>
           <text x="296" y="76" font-size="12" fill="#666" font-weight="500">TCP/22</text>
 
           <rect x="80" y="86" width="280" height="46" rx="10" fill="#4a8c2a" filter="url(#sh3)"/>
           <text x="220" y="115" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">OpenSSH Server (sshd)</text>
-          <line x1="220" y1="132" x2="220" y2="158" stroke="#4a8c2a" stroke-width="2.5" marker-end="url(#arrowSsh)"/>
+          <line x1="220" y1="132" x2="220" y2="156" stroke="#4a8c2a" stroke-width="3"/>
+          <polygon points="220,162 212,150 228,150" fill="#4a8c2a"/>
           <text x="300" y="152" font-size="12" fill="#666" font-weight="500">Linux auth</text>
 
           <rect x="120" y="162" width="200" height="46" rx="10" fill="#fff" stroke="#2d5016" stroke-width="2" filter="url(#sh3)"/>
