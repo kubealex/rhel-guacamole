@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" width="200" height="280">
+  <!-- Avocado outer skin -->
+  <ellipse cx="100" cy="155" rx="72" ry="105" fill="#2d5016" />
+  <ellipse cx="100" cy="155" rx="72" ry="105" fill="url(#avocadoSkin)" />
+
+  <!-- Inner flesh -->
+  <ellipse cx="100" cy="160" rx="58" ry="88" fill="#c6d94e" />
+  <ellipse cx="100" cy="160" rx="58" ry="88" fill="url(#avocadoFlesh)" />
+
+  <!-- Pit -->
+  <ellipse cx="100" cy="175" rx="28" ry="34" fill="#8B6914" />
+  <ellipse cx="100" cy="175" rx="28" ry="34" fill="url(#pitGrad)" />
+  <!-- Pit highlight -->
+  <ellipse cx="93" cy="168" rx="12" ry="15" fill="rgba(255,255,255,0.15)" />
+
+  <!-- Stem -->
+  <path d="M100 50 Q98 55 99 65 Q100 72 100 50" fill="#5a3e1b" stroke="#5a3e1b" stroke-width="2"/>
+  <path d="M100 50 Q105 58 103 68" fill="none" stroke="#5a3e1b" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Leaf -->
+  <path d="M100 52 Q88 35 80 28 Q90 20 100 30 Q100 40 100 52Z" fill="#4a8c2a" />
+  <path d="M100 52 Q112 35 120 28 Q110 20 100 30 Q100 40 100 52Z" fill="#3d7a22" />
+  <line x1="100" y1="30" x2="100" y2="52" stroke="#2d5016" stroke-width="0.8" />
+
+  <!-- Skin texture highlight -->
+  <ellipse cx="78" cy="130" rx="15" ry="30" fill="rgba(255,255,255,0.06)" transform="rotate(-15 78 130)" />
+
+  <defs>
+    <radialGradient id="avocadoSkin" cx="40%" cy="35%">
+      <stop offset="0%" stop-color="#3a6b1e" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#1a3a0a" stop-opacity="0.4" />
+    </radialGradient>
+    <radialGradient id="avocadoFlesh" cx="45%" cy="40%">
+      <stop offset="0%" stop-color="#e8f5a3" stop-opacity="0.5" />
+      <stop offset="60%" stop-color="#b5c94a" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#8ba83a" stop-opacity="0.3" />
+    </radialGradient>
+    <radialGradient id="pitGrad" cx="42%" cy="40%">
+      <stop offset="0%" stop-color="#a8842a" />
+      <stop offset="100%" stop-color="#6b4e0f" />
+    </radialGradient>
+  </defs>
+</svg>
