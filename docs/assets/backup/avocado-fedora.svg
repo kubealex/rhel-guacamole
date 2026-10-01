@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 310" width="260" height="310">
+  <defs>
+    <radialGradient id="afSkin" cx="40%" cy="35%">
+      <stop offset="0%" stop-color="#3a6b1e" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#1a3a0a" stop-opacity="0.4" />
+    </radialGradient>
+    <radialGradient id="afFlesh" cx="45%" cy="40%">
+      <stop offset="0%" stop-color="#e8f5a3" stop-opacity="0.5" />
+      <stop offset="60%" stop-color="#b5c94a" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#8ba83a" stop-opacity="0.3" />
+    </radialGradient>
+    <radialGradient id="afPit" cx="42%" cy="40%">
+      <stop offset="0%" stop-color="#a8842a" />
+      <stop offset="100%" stop-color="#6b4e0f" />
+    </radialGradient>
+  </defs>
+
+  <!-- ====== AVOCADO BODY ====== -->
+  <ellipse cx="120" cy="185" rx="72" ry="105" fill="#2d5016" />
+  <ellipse cx="120" cy="185" rx="72" ry="105" fill="url(#afSkin)" />
+  <ellipse cx="120" cy="190" rx="58" ry="88" fill="#c6d94e" />
+  <ellipse cx="120" cy="190" rx="58" ry="88" fill="url(#afFlesh)" />
+  <ellipse cx="120" cy="205" rx="28" ry="34" fill="#8B6914" />
+  <ellipse cx="120" cy="205" rx="28" ry="34" fill="url(#afPit)" />
+  <ellipse cx="113" cy="198" rx="12" ry="15" fill="rgba(255,255,255,0.15)" />
+  <ellipse cx="98" cy="160" rx="15" ry="30" fill="rgba(255,255,255,0.06)" transform="rotate(-15 98 160)" />
+
+  <!-- ====== RED HAT FEDORA ====== -->
+  <!-- Side-profile style like the actual Red Hat logo:
+       smooth rounded dome, wide brim sweeping right, slightly tilted -->
+
+  <!-- Shadow on avocado surface -->
+  <ellipse cx="125" cy="86" rx="50" ry="6" fill="rgba(0,0,0,0.10)" />
+
+  <!-- Brim underside (dark, visible below the brim on the right) -->
+  <path d="
+    M 38,80
+    Q 80,90 140,84
+    Q 190,80 240,76
+    Q 190,84 140,88
+    Q 80,94 38,80
+    Z
+  " fill="#000" opacity="0.65" />
+
+  <!-- Hat main shape: crown + brim as one organic silhouette -->
+  <!-- Crown is a smooth low dome on the left, brim sweeps wide to the right -->
+  <path d="
+    M 38,78
+    C 32,72 30,60 38,48
+    C 46,36 62,24 82,20
+    C 102,16 118,18 130,24
+    C 142,30 148,40 150,52
+    C 152,62 154,70 160,74
+    C 170,76 200,74 240,72
+    L 240,76
+    C 200,78 160,80 140,82
+    Q 90,86 38,78
+    Z
+  " fill="#EE0000" />
+
+  <!-- Crown highlight (lighter left edge) -->
+  <path d="
+    M 44,70
+    C 38,62 38,50 44,40
+    C 52,30 66,22 84,20
+  " fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="3.5" stroke-linecap="round" />
+
+  <!-- Crown shading (subtle right-side shadow for volume) -->
+  <path d="
+    M 130,24
+    C 142,30 148,40 150,52
+    C 152,62 154,70 160,74
+    C 150,76 140,78 130,78
+    L 130,24
+    Z
+  " fill="rgba(0,0,0,0.08)" />
+
+  <!-- Brim top surface highlight -->
+  <path d="
+    M 140,80
+    Q 180,76 230,74
+  " fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2" stroke-linecap="round" />
+</svg>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RHEL Guacamole - Remote Desktop Made Easy</title>
+  <title>Guacamole on RHEL - Remote Desktop Made Easy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&family=Red+Hat+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -81,8 +81,15 @@
       margin-bottom: 2rem;
     }
 
+    .hero-images .rh-img {
+      width: 120px;
+      height: auto;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+      animation: bobA 4s ease-in-out infinite 1s;
+    }
+
     .hero-images .avocado-img {
-      width: 110px;
+      width: 100px;
       height: auto;
       filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
       animation: bobA 4s ease-in-out infinite;
@@ -599,8 +606,9 @@
     @media (max-width: 640px) {
       .hero h1 { font-size: 2.2rem; }
       .hero .subtitle { font-size: 1rem; }
-      .hero-images .avocado-img { width: 80px; }
-      .hero-images .guac-img { width: 130px; }
+      .hero-images .rh-img { width: 85px; }
+      .hero-images .avocado-img { width: 70px; }
+      .hero-images .guac-img { width: 120px; }
       .step { padding: 1.25rem; }
       .main { padding: 1.5rem 1rem 3rem; }
       .conn-grid { grid-template-columns: 1fr; }
@@ -613,10 +621,11 @@
 <header class="hero">
   <div class="hero-content">
     <div class="hero-images">
-      <img src="assets/avocado-fedora.svg" alt="Avocado with Fedora" class="avocado-img">
+      <img src="assets/redhat-logo.svg" alt="Red Hat" class="rh-img">
+      <img src="assets/avocado.svg" alt="Avocado" class="avocado-img">
       <img src="assets/guacamole.svg" alt="Guacamole Bowl" class="guac-img">
     </div>
-    <h1><span class="rh">RHEL</span> <span class="guac">Guacamole</span></h1>
+    <h1><span class="guac">Guacamole</span> on <span class="rh">RHEL</span></h1>
     <p class="subtitle">Browser-based remote desktop for RHEL, powered by Apache Guacamole and Podman</p>
     <div class="hero-badges">
       <span class="badge badge-rh">RHEL 10</span>
