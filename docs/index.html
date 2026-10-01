@@ -114,7 +114,7 @@
     }
 
     .hero h1 .rh {
-      color: #ff6b6b;
+      color: #EE0000;
     }
 
     .hero h1 .guac {
@@ -636,11 +636,11 @@
     <button class="nav-tab" onclick="showSection('server', this)">
       <span class="tab-icon">&#9881;&#65039;</span> Server Setup
     </button>
-    <button class="nav-tab" onclick="showSection('connections', this)">
-      <span class="tab-icon">&#128279;</span> Connections
-    </button>
     <button class="nav-tab" onclick="showSection('client', this)">
       <span class="tab-icon">&#128421;</span> Client Setup
+    </button>
+    <button class="nav-tab" onclick="showSection('connections', this)">
+      <span class="tab-icon">&#128279;</span> Connections
     </button>
     <button class="nav-tab" onclick="showSection('troubleshooting', this)">
       <span class="tab-icon">&#128269;</span> Troubleshooting
@@ -685,85 +685,93 @@
 
     <!-- SVG Architecture Diagram -->
     <div class="arch-svg-wrap">
-      <svg viewBox="0 0 680 400" width="680" height="400" xmlns="http://www.w3.org/2000/svg" font-family="'Red Hat Display', system-ui, sans-serif">
+      <svg viewBox="0 0 720 440" width="720" height="440" xmlns="http://www.w3.org/2000/svg" font-family="'Red Hat Display', system-ui, sans-serif">
         <defs>
-          <marker id="arrowG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-            <polygon points="0 0, 8 3, 0 6" fill="#8fbf30" />
+          <marker id="arrowG" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+            <polygon points="0 0, 10 4, 0 8" fill="#4a8c2a" />
           </marker>
-          <marker id="arrowB" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-            <polygon points="0 0, 8 3, 0 6" fill="#5a8abf" />
+          <marker id="arrowB" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+            <polygon points="0 0, 10 4, 0 8" fill="#2c5aa0" />
           </marker>
-          <filter id="shadow1" x="-4%" y="-4%" width="108%" height="116%">
-            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.08"/>
+          <marker id="arrowD" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+            <polygon points="0 0, 10 4, 0 8" fill="#b8862a" />
+          </marker>
+          <filter id="shadow1" x="-6%" y="-8%" width="112%" height="124%">
+            <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity="0.10"/>
           </filter>
         </defs>
 
+        <!-- Background grouping lines -->
+        <rect x="30" y="2" width="660" height="72" rx="12" fill="#f0f4ff" stroke="#d0d8e8" stroke-width="1" stroke-dasharray="4,2" opacity="0.5"/>
+        <text x="48" y="20" font-size="11" fill="#8899bb" font-weight="600" letter-spacing="0.05em">USER</text>
+
+        <rect x="30" y="82" width="660" height="200" rx="12" fill="#f2f8ee" stroke="#c8ddb8" stroke-width="1" stroke-dasharray="4,2" opacity="0.5"/>
+        <text x="48" y="100" font-size="11" fill="#6a9a50" font-weight="600" letter-spacing="0.05em">GUACAMOLE SERVER</text>
+
+        <rect x="30" y="290" width="660" height="144" rx="12" fill="#fff8ee" stroke="#e0d4b8" stroke-width="1" stroke-dasharray="4,2" opacity="0.5"/>
+        <text x="48" y="308" font-size="11" fill="#b89050" font-weight="600" letter-spacing="0.05em">TARGETS</text>
+
         <!-- Browser -->
-        <rect x="225" y="10" width="170" height="44" rx="10" fill="#fff" stroke="#ccc" stroke-width="1.5" filter="url(#shadow1)"/>
-        <text x="310" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="#333">Browser</text>
+        <rect x="240" y="18" width="200" height="50" rx="10" fill="#fff" stroke="#aab4cc" stroke-width="2" filter="url(#shadow1)"/>
+        <text x="340" y="49" text-anchor="middle" font-size="16" font-weight="700" fill="#333">Browser</text>
 
         <!-- Arrow: Browser → Guacamole -->
-        <line x1="310" y1="54" x2="310" y2="86" stroke="#8fbf30" stroke-width="2" marker-end="url(#arrowG)"/>
+        <line x1="340" y1="68" x2="340" y2="106" stroke="#4a8c2a" stroke-width="2.5" marker-end="url(#arrowG)"/>
 
         <!-- Guacamole Web App -->
-        <rect x="195" y="90" width="230" height="48" rx="10" fill="#2d5016" filter="url(#shadow1)"/>
-        <text x="310" y="119" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Guacamole Web App</text>
-        <text x="310" y="133" text-anchor="middle" font-size="10" fill="#c6d94e" font-weight="500">:8080</text>
+        <rect x="205" y="110" width="270" height="54" rx="10" fill="#2d5016" filter="url(#shadow1)"/>
+        <text x="340" y="140" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">Guacamole Web App</text>
+        <text x="340" y="157" text-anchor="middle" font-size="13" fill="#c6d94e" font-weight="600">:8080</text>
 
         <!-- Arrow: Guacamole → PostgreSQL (right) -->
-        <line x1="425" y1="114" x2="478" y2="114" stroke="#d4a44a" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowB)"/>
+        <line x1="475" y1="137" x2="530" y2="137" stroke="#b8862a" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowD)"/>
 
         <!-- PostgreSQL -->
-        <rect x="485" y="92" width="150" height="44" rx="10" fill="#d4a44a" filter="url(#shadow1)"/>
-        <text x="560" y="119" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">PostgreSQL</text>
+        <rect x="535" y="113" width="150" height="48" rx="10" fill="#c8960a" filter="url(#shadow1)"/>
+        <text x="610" y="143" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">PostgreSQL</text>
 
         <!-- Arrow: Guacamole → guacd -->
-        <line x1="310" y1="138" x2="310" y2="178" stroke="#8fbf30" stroke-width="2" marker-end="url(#arrowG)"/>
+        <line x1="340" y1="164" x2="340" y2="206" stroke="#4a8c2a" stroke-width="2.5" marker-end="url(#arrowG)"/>
 
         <!-- guacd -->
-        <rect x="215" y="182" width="190" height="48" rx="10" fill="#4a8c2a" filter="url(#shadow1)"/>
-        <text x="310" y="211" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">guacd</text>
-        <text x="310" y="225" text-anchor="middle" font-size="10" fill="#c6d94e" font-weight="500">:4822</text>
+        <rect x="230" y="210" width="220" height="54" rx="10" fill="#4a8c2a" filter="url(#shadow1)"/>
+        <text x="340" y="240" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">guacd</text>
+        <text x="340" y="257" text-anchor="middle" font-size="13" fill="#c6d94e" font-weight="600">:4822</text>
 
         <!-- Fork: guacd → RDP (left) -->
-        <path d="M 270,230 L 270,260 Q 270,270 260,270 L 170,270 L 170,286" fill="none" stroke="#5a8abf" stroke-width="2" marker-end="url(#arrowB)"/>
+        <path d="M 290,264 L 290,298 Q 290,308 280,308 L 195,308 L 195,322" fill="none" stroke="#2c5aa0" stroke-width="2.5" marker-end="url(#arrowB)"/>
 
         <!-- Fork: guacd → SSH (right) -->
-        <path d="M 350,230 L 350,260 Q 350,270 360,270 L 450,270 L 450,286" fill="none" stroke="#8fbf30" stroke-width="2" marker-end="url(#arrowG)"/>
+        <path d="M 390,264 L 390,298 Q 390,308 400,308 L 485,308 L 485,322" fill="none" stroke="#4a8c2a" stroke-width="2.5" marker-end="url(#arrowG)"/>
 
         <!-- RDP protocol badge -->
-        <rect x="110" y="290" width="120" height="36" rx="8" fill="#3c64b4" filter="url(#shadow1)"/>
-        <text x="170" y="313" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">RDP :3389</text>
+        <rect x="125" y="326" width="140" height="42" rx="10" fill="#2c5aa0" filter="url(#shadow1)"/>
+        <text x="195" y="353" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">RDP :3389</text>
 
         <!-- Arrow: RDP → Workstation -->
-        <line x1="170" y1="326" x2="170" y2="348" stroke="#5a8abf" stroke-width="2" marker-end="url(#arrowB)"/>
+        <line x1="195" y1="368" x2="195" y2="392" stroke="#2c5aa0" stroke-width="2.5" marker-end="url(#arrowB)"/>
 
         <!-- RHEL Workstation -->
-        <rect x="80" y="352" width="180" height="38" rx="8" fill="#fff" stroke="#3c64b4" stroke-width="1.5" filter="url(#shadow1)"/>
-        <text x="170" y="376" text-anchor="middle" font-size="11.5" font-weight="600" fill="#2c4a80">RHEL Workstation</text>
+        <rect x="95" y="396" width="200" height="34" rx="8" fill="#fff" stroke="#2c5aa0" stroke-width="2" filter="url(#shadow1)"/>
+        <text x="195" y="418" text-anchor="middle" font-size="14" font-weight="600" fill="#1e3d6e">RHEL Workstation</text>
 
         <!-- SSH protocol badge -->
-        <rect x="390" y="290" width="120" height="36" rx="8" fill="#2d5016" filter="url(#shadow1)"/>
-        <text x="450" y="313" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">SSH :22</text>
+        <rect x="415" y="326" width="140" height="42" rx="10" fill="#2d5016" filter="url(#shadow1)"/>
+        <text x="485" y="353" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">SSH :22</text>
 
         <!-- Arrow: SSH → Server -->
-        <line x1="450" y1="326" x2="450" y2="348" stroke="#8fbf30" stroke-width="2" marker-end="url(#arrowG)"/>
+        <line x1="485" y1="368" x2="485" y2="392" stroke="#4a8c2a" stroke-width="2.5" marker-end="url(#arrowG)"/>
 
         <!-- RHEL Server -->
-        <rect x="370" y="352" width="160" height="38" rx="8" fill="#fff" stroke="#2d5016" stroke-width="1.5" filter="url(#shadow1)"/>
-        <text x="450" y="376" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1a3a0a">RHEL Server</text>
-
-        <!-- Labels -->
-        <text x="48" y="376" text-anchor="middle" font-size="9" fill="#999" font-style="italic">Client</text>
-        <text x="48" y="313" text-anchor="middle" font-size="9" fill="#999" font-style="italic">Protocol</text>
-        <text x="48" y="119" text-anchor="middle" font-size="9" fill="#999" font-style="italic">Server</text>
+        <rect x="395" y="396" width="180" height="34" rx="8" fill="#fff" stroke="#2d5016" stroke-width="2" filter="url(#shadow1)"/>
+        <text x="485" y="418" text-anchor="middle" font-size="14" font-weight="600" fill="#1a3a0a">RHEL Server</text>
       </svg>
     </div>
 
     <div class="callout callout-info">
       <span class="callout-icon">&#9432;</span>
       <div>
-        <strong>Three things to set up:</strong> The <em>Server Setup</em> tab deploys Guacamole itself. The <em>Connections</em> tab shows how to add RDP and SSH targets. The <em>Client Setup</em> tab prepares RHEL machines to accept incoming connections.
+        <strong>Three things to set up:</strong> The <em>Server Setup</em> tab deploys Guacamole itself. The <em>Client Setup</em> tab prepares RHEL machines to accept incoming connections. The <em>Connections</em> tab shows how to add RDP and SSH targets in the Guacamole UI.
       </div>
     </div>
   </section>
@@ -1043,35 +1051,35 @@ podman run -d \
 
       <!-- RDP Architecture SVG -->
       <div class="arch-svg-wrap">
-        <svg viewBox="0 0 480 280" width="480" height="280" xmlns="http://www.w3.org/2000/svg" font-family="'Red Hat Display', system-ui, sans-serif">
+        <svg viewBox="0 0 520 320" width="520" height="320" xmlns="http://www.w3.org/2000/svg" font-family="'Red Hat Display', system-ui, sans-serif">
           <defs>
-            <marker id="arrowRdp" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-              <polygon points="0 0, 8 3, 0 6" fill="#5a8abf" />
+            <marker id="arrowRdp" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+              <polygon points="0 0, 10 4, 0 8" fill="#2c5aa0" />
             </marker>
-            <filter id="sh2" x="-4%" y="-4%" width="108%" height="116%">
-              <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.06"/>
+            <filter id="sh2" x="-6%" y="-8%" width="112%" height="124%">
+              <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.10"/>
             </filter>
           </defs>
-          <rect x="155" y="8" width="170" height="38" rx="8" fill="#3c64b4" filter="url(#sh2)"/>
-          <text x="240" y="32" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">RDP Client (Guacamole)</text>
-          <line x1="240" y1="46" x2="240" y2="68" stroke="#5a8abf" stroke-width="2" marker-end="url(#arrowRdp)"/>
-          <text x="308" y="62" font-size="9" fill="#888">TCP/3389</text>
+          <rect x="150" y="8" width="220" height="46" rx="10" fill="#2c5aa0" filter="url(#sh2)"/>
+          <text x="260" y="37" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">RDP Client (Guacamole)</text>
+          <line x1="260" y1="54" x2="260" y2="78" stroke="#2c5aa0" stroke-width="2.5" marker-end="url(#arrowRdp)"/>
+          <text x="340" y="72" font-size="12" fill="#666" font-weight="500">TCP/3389</text>
 
-          <rect x="125" y="72" width="230" height="38" rx="8" fill="#2d5016" filter="url(#sh2)"/>
-          <text x="240" y="96" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">GNOME Remote Desktop</text>
-          <line x1="240" y1="110" x2="240" y2="132" stroke="#5a8abf" stroke-width="2" marker-end="url(#arrowRdp)"/>
-          <text x="310" y="126" font-size="9" fill="#888">RDP gateway auth</text>
+          <rect x="120" y="82" width="280" height="46" rx="10" fill="#2d5016" filter="url(#sh2)"/>
+          <text x="260" y="111" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">GNOME Remote Desktop</text>
+          <line x1="260" y1="128" x2="260" y2="152" stroke="#2c5aa0" stroke-width="2.5" marker-end="url(#arrowRdp)"/>
+          <text x="348" y="146" font-size="12" fill="#666" font-weight="500">Gateway auth</text>
 
-          <rect x="185" y="136" width="110" height="38" rx="8" fill="#d4a44a" filter="url(#sh2)"/>
-          <text x="240" y="160" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">GDM</text>
-          <line x1="240" y1="174" x2="240" y2="196" stroke="#5a8abf" stroke-width="2" marker-end="url(#arrowRdp)"/>
-          <text x="310" y="190" font-size="9" fill="#888">Linux auth</text>
+          <rect x="185" y="156" width="150" height="46" rx="10" fill="#c8960a" filter="url(#sh2)"/>
+          <text x="260" y="185" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">GDM</text>
+          <line x1="260" y1="202" x2="260" y2="226" stroke="#2c5aa0" stroke-width="2.5" marker-end="url(#arrowRdp)"/>
+          <text x="336" y="220" font-size="12" fill="#666" font-weight="500">Linux auth</text>
 
-          <rect x="115" y="200" width="250" height="38" rx="8" fill="#4a8c2a" filter="url(#sh2)"/>
-          <text x="240" y="224" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">GNOME Wayland + PipeWire</text>
+          <rect x="110" y="230" width="300" height="46" rx="10" fill="#4a8c2a" filter="url(#sh2)"/>
+          <text x="260" y="259" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">GNOME Wayland + PipeWire</text>
 
-          <rect x="145" y="250" width="190" height="24" rx="6" fill="rgba(74,140,42,0.1)" stroke="#4a8c2a" stroke-width="1"/>
-          <text x="240" y="266" text-anchor="middle" font-size="10" fill="#4a8c2a" font-weight="500">Remote Desktop Stream</text>
+          <rect x="150" y="290" width="220" height="26" rx="8" fill="rgba(74,140,42,0.12)" stroke="#4a8c2a" stroke-width="1.5"/>
+          <text x="260" y="308" text-anchor="middle" font-size="13" fill="#2d5016" font-weight="600">Remote Desktop Stream</text>
         </svg>
       </div>
 
@@ -1240,27 +1248,27 @@ sudo journalctl -u gnome-remote-desktop.service -n 50 --no-pager</code></pre>
 
       <!-- SSH Architecture SVG -->
       <div class="arch-svg-wrap">
-        <svg viewBox="0 0 400 200" width="400" height="200" xmlns="http://www.w3.org/2000/svg" font-family="'Red Hat Display', system-ui, sans-serif">
+        <svg viewBox="0 0 440 240" width="440" height="240" xmlns="http://www.w3.org/2000/svg" font-family="'Red Hat Display', system-ui, sans-serif">
           <defs>
-            <marker id="arrowSsh" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-              <polygon points="0 0, 8 3, 0 6" fill="#8fbf30" />
+            <marker id="arrowSsh" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+              <polygon points="0 0, 10 4, 0 8" fill="#4a8c2a" />
             </marker>
-            <filter id="sh3" x="-4%" y="-4%" width="108%" height="116%">
-              <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.06"/>
+            <filter id="sh3" x="-6%" y="-8%" width="112%" height="124%">
+              <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.10"/>
             </filter>
           </defs>
-          <rect x="100" y="8" width="200" height="38" rx="8" fill="#2d5016" filter="url(#sh3)"/>
-          <text x="200" y="32" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Guacamole (guacd)</text>
-          <line x1="200" y1="46" x2="200" y2="72" stroke="#8fbf30" stroke-width="2" marker-end="url(#arrowSsh)"/>
-          <text x="260" y="64" font-size="9" fill="#888">TCP/22</text>
+          <rect x="100" y="10" width="240" height="46" rx="10" fill="#2d5016" filter="url(#sh3)"/>
+          <text x="220" y="39" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Guacamole (guacd)</text>
+          <line x1="220" y1="56" x2="220" y2="82" stroke="#4a8c2a" stroke-width="2.5" marker-end="url(#arrowSsh)"/>
+          <text x="296" y="76" font-size="12" fill="#666" font-weight="500">TCP/22</text>
 
-          <rect x="100" y="76" width="200" height="38" rx="8" fill="#4a8c2a" filter="url(#sh3)"/>
-          <text x="200" y="100" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">OpenSSH Server (sshd)</text>
-          <line x1="200" y1="114" x2="200" y2="140" stroke="#8fbf30" stroke-width="2" marker-end="url(#arrowSsh)"/>
-          <text x="268" y="132" font-size="9" fill="#888">Linux auth</text>
+          <rect x="80" y="86" width="280" height="46" rx="10" fill="#4a8c2a" filter="url(#sh3)"/>
+          <text x="220" y="115" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">OpenSSH Server (sshd)</text>
+          <line x1="220" y1="132" x2="220" y2="158" stroke="#4a8c2a" stroke-width="2.5" marker-end="url(#arrowSsh)"/>
+          <text x="300" y="152" font-size="12" fill="#666" font-weight="500">Linux auth</text>
 
-          <rect x="130" y="144" width="140" height="38" rx="8" fill="#fff" stroke="#4a8c2a" stroke-width="1.5" filter="url(#sh3)"/>
-          <text x="200" y="168" text-anchor="middle" font-size="12" font-weight="600" fill="#1a3a0a">Shell Session</text>
+          <rect x="120" y="162" width="200" height="46" rx="10" fill="#fff" stroke="#2d5016" stroke-width="2" filter="url(#sh3)"/>
+          <text x="220" y="191" text-anchor="middle" font-size="15" font-weight="600" fill="#1a3a0a">Shell Session</text>
         </svg>
       </div>
 
