@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="docs/assets/avocado-fedora.svg" width="100" alt="Avocado with Red Hat Fedora">
+  <img src="docs/assets/redhat-logo.svg" width="80" alt="Red Hat">
+  <img src="docs/assets/avocado.svg" width="100" alt="Avocado">
   <img src="docs/assets/guacamole.svg" width="160" alt="Guacamole Bowl">
 </p>
 

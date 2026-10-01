@@ -209,8 +209,15 @@
 
     .nav-tab .tab-icon {
       display: block;
-      font-size: 1.1rem;
-      margin-bottom: 0.15rem;
+      margin: 0 auto 0.15rem;
+      width: 20px;
+      height: 20px;
+    }
+
+    .nav-tab .tab-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
     }
 
     /* Main content */
@@ -429,7 +436,7 @@
       font-size: 0.9rem;
     }
 
-    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .callout-icon { flex-shrink: 0; margin-top: 0.2rem; line-height: 0; }
     .callout-info { background: rgba(74, 140, 42, 0.08); border-left: 3px solid var(--green-bright); }
     .callout-warn { background: rgba(212, 164, 74, 0.12); border-left: 3px solid var(--gold); }
     .callout-danger { background: rgba(200, 50, 50, 0.08); border-left: 3px solid #c83232; }
@@ -513,7 +520,8 @@
       box-shadow: 0 2px 6px var(--shadow);
     }
 
-    .overview-card .card-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .overview-card .card-icon { margin-bottom: 0.5rem; }
+    .overview-card .card-icon svg { width: 36px; height: 36px; fill: var(--green-mid); }
 
     .overview-card h4 {
       font-family: 'Red Hat Display', sans-serif;
@@ -640,19 +648,19 @@
 <nav class="nav-bar">
   <div class="nav-inner">
     <button class="nav-tab active" onclick="showSection('overview', this)">
-      <span class="tab-icon">&#127968;</span> Overview
+      <span class="tab-icon"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></span> Overview
     </button>
     <button class="nav-tab" onclick="showSection('server', this)">
-      <span class="tab-icon">&#9881;&#65039;</span> Server Setup
+      <span class="tab-icon"><svg viewBox="0 0 24 24"><path d="M2 5a2 2 0 012-2h16a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3 2a1 1 0 100-2 1 1 0 000 2zm5-1a1 1 0 11-2 0 1 1 0 012 0zM2 15a2 2 0 012-2h16a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4zm3 2a1 1 0 100-2 1 1 0 000 2zm5-1a1 1 0 11-2 0 1 1 0 012 0z"/></svg></span> Server Setup
     </button>
     <button class="nav-tab" onclick="showSection('client', this)">
-      <span class="tab-icon">&#128421;</span> Client Setup
+      <span class="tab-icon"><svg viewBox="0 0 24 24"><path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm5 16h8m-4 0v-3"/><rect x="3" y="3" width="18" height="14" rx="1" fill="currentColor"/><line x1="7" y1="20" x2="17" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg></span> Client Setup
     </button>
     <button class="nav-tab" onclick="showSection('connections', this)">
-      <span class="tab-icon">&#128279;</span> Connections
+      <span class="tab-icon"><svg viewBox="0 0 24 24"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></span> Connections
     </button>
     <button class="nav-tab" onclick="showSection('troubleshooting', this)">
-      <span class="tab-icon">&#128269;</span> Troubleshooting
+      <span class="tab-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6-3.3 3.3-1.6-1.6a1 1 0 00-1.4 0l-4.3 4.3a2.5 2.5 0 103.5 3.5l4.3-4.3a1 1 0 000-1.4L14.1 11.5l3.3-3.3 1.6 1.6a1 1 0 001.4 0l1.3-1.3a1 1 0 000-1.4L18.2 3.6a1 1 0 00-1.4 0z"/></svg></span> Troubleshooting
     </button>
   </div>
 </nav>
@@ -669,22 +677,22 @@
 
     <div class="overview-grid">
       <div class="overview-card">
-        <div class="card-icon">&#127760;</div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
         <h4>Browser-Based</h4>
         <p>Access remote desktops from any modern browser &mdash; no plugins or client installs.</p>
       </div>
       <div class="overview-card">
-        <div class="card-icon">&#128274;</div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg></div>
         <h4>Rootless Containers</h4>
         <p>All services run as unprivileged Podman containers for better security.</p>
       </div>
       <div class="overview-card">
-        <div class="card-icon">&#128421;</div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 2H3a2 2 0 00-2 2v12a2 2 0 002 2h7l-2 3v1h8v-1l-2-3h7a2 2 0 002-2V4a2 2 0 00-2-2zm0 12H3V4h18v10z"/></svg></div>
         <h4>RDP &amp; SSH</h4>
         <p>Graphical GNOME desktops via RDP and headless servers via SSH.</p>
       </div>
       <div class="overview-card">
-        <div class="card-icon">&#128450;</div>
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M20 6c0-2.21-3.58-4-8-4S4 3.79 4 6v2c0 2.21 3.58 4 8 4s8-1.79 8-4V6zM4 12v2c0 2.21 3.58 4 8 4s8-1.79 8-4v-2c0 2.21-3.58 4-8 4s-8-1.79-8-4zm0 6v2c0 2.21 3.58 4 8 4s8-1.79 8-4v-2c0 2.21-3.58 4-8 4s-8-1.79-8-4z"/></svg></div>
         <h4>Persistent Config</h4>
         <p>PostgreSQL stores users, connections, and preferences across restarts.</p>
       </div>
@@ -776,7 +784,7 @@
     </div>
 
     <div class="callout callout-info">
-      <span class="callout-icon">&#9432;</span>
+      <span class="callout-icon"><svg viewBox="0 0 20 20" width="18" height="18" fill="#4a8c2a"><path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm1 15H9V9h2v6zm0-8H9V5h2v2z"/></svg></span>
       <div>
         <strong>Three things to set up:</strong> The <em>Server Setup</em> tab deploys Guacamole itself. The <em>Client Setup</em> tab prepares RHEL machines to accept incoming connections. The <em>Connections</em> tab shows how to add RDP and SSH targets in the Guacamole UI.
       </div>
@@ -850,7 +858,7 @@ podman run -d \
   docker.io/library/postgres:16</code></pre>
       </div>
       <div class="callout callout-warn">
-        <span class="callout-icon">&#9888;</span>
+        <span class="callout-icon"><svg viewBox="0 0 20 20" width="18" height="18" fill="#b8862a"><path d="M1 18h18L10 1 1 18zm10.5-2.5h-3v-1h3v1zm0-2h-3v-4h3v4z"/></svg></span>
         <div>Replace <span class="ic">CHANGE_ME_DB_PASSWORD</span> with a strong password. The initialization scripts only execute when the data directory is empty.</div>
       </div>
     </div>
@@ -869,7 +877,7 @@ podman run -d \
   docker.io/guacamole/guacd:1.6.0</code></pre>
       </div>
       <div class="callout callout-info">
-        <span class="callout-icon">&#128161;</span>
+        <span class="callout-icon"><svg viewBox="0 0 20 20" width="18" height="18" fill="#4a8c2a"><path d="M10 1C6.14 1 3 4.14 3 8c0 2.38 1.19 4.47 3 5.74V16c0 .55.45 1 1 1h1v1c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-1h1c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2 12.7V16H8v-2.3C6.48 12.63 5 10.5 5 8c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.5-1.48 4.63-3 5.7z"/></svg></span>
         <div>For verbose logging, add <span class="ic">-e LOG_LEVEL=debug</span> to the command.</div>
       </div>
     </div>
@@ -916,7 +924,7 @@ podman run -d \
         <span class="ic">Password: guacadmin</span>
       </div>
       <div class="callout callout-danger">
-        <span class="callout-icon">&#128721;</span>
+        <span class="callout-icon"><svg viewBox="0 0 20 20" width="18" height="18" fill="#c83232"><path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm5 13.59L13.59 15 10 11.41 6.41 15 5 13.59 8.59 10 5 6.41 6.41 5 10 8.59 13.59 5 15 6.41 11.41 10 15 13.59z"/></svg></span>
         <div><strong>Change the default password immediately</strong> after your first login.</div>
       </div>
     </div>
@@ -937,7 +945,7 @@ podman run -d \
         <pre><code>sudo loginctl enable-linger $USER</code></pre>
       </div>
       <div class="callout callout-info">
-        <span class="callout-icon">&#128161;</span>
+        <span class="callout-icon"><svg viewBox="0 0 20 20" width="18" height="18" fill="#4a8c2a"><path d="M10 1C6.14 1 3 4.14 3 8c0 2.38 1.19 4.47 3 5.74V16c0 .55.45 1 1 1h1v1c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-1h1c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2 12.7V16H8v-2.3C6.48 12.63 5 10.5 5 8c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.5-1.48 4.63-3 5.7z"/></svg></span>
         <div>For production deployments on recent RHEL versions, consider managing containers using <strong>Podman Quadlet/systemd</strong>.</div>
       </div>
     </div>
@@ -954,7 +962,7 @@ podman run -d \
       <!-- RDP Connection Card -->
       <div class="conn-card">
         <div class="conn-card-header rdp-header">
-          <span>&#128421;</span> RDP Connection
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M21 2H3a2 2 0 00-2 2v12a2 2 0 002 2h7l-2 3v1h8v-1l-2-3h7a2 2 0 002-2V4a2 2 0 00-2-2zm0 12H3V4h18v10z"/></svg> RDP Connection
         </div>
         <div class="conn-card-body">
           <p>Connect to a RHEL workstation running GNOME Remote Desktop.</p>
@@ -966,7 +974,7 @@ podman run -d \
           <div class="conn-field"><span class="conn-field-label">Password</span><span class="conn-field-value">&lt;RDP_GATEWAY_PASSWORD&gt;</span></div>
           <div class="conn-field"><span class="conn-field-label">Ignore server cert</span><span class="conn-field-value">Enabled</span></div>
           <div class="callout callout-info" style="margin-top:1rem;">
-            <span class="callout-icon">&#9432;</span>
+            <span class="callout-icon"><svg viewBox="0 0 20 20" width="18" height="18" fill="#4a8c2a"><path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm1 15H9V9h2v6zm0-8H9V5h2v2z"/></svg></span>
             <div>These are the GNOME Remote Desktop <strong>gateway</strong> credentials, not the Linux user's password. See the <em>Client Setup &rarr; RDP</em> tab.</div>
           </div>
         </div>
@@ -975,7 +983,7 @@ podman run -d \
       <!-- SSH Connection Card -->
       <div class="conn-card">
         <div class="conn-card-header ssh-header">
-          <span>&#128273;</span> SSH Connection
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zM7 15l-2-2 2-2 1.4 1.4L7.8 13l.6.6L7 15zm4.6 1L10 15.3l3.4-6.6L15 9.3l-3.4 6.7zM17 15l-1.4-1.4.6-.6-.6-.6L17 11l2 2-2 2z"/></svg> SSH Connection
         </div>
         <div class="conn-card-body">
           <p>Connect to a RHEL server running OpenSSH.</p>
@@ -986,7 +994,7 @@ podman run -d \
           <div class="conn-field"><span class="conn-field-label">Username</span><span class="conn-field-value">&lt;linux_user&gt;</span></div>
           <div class="conn-field"><span class="conn-field-label">Password</span><span class="conn-field-value">&lt;linux_password&gt;</span></div>
           <div class="callout callout-info" style="margin-top:1rem;">
-            <span class="callout-icon">&#9432;</span>
+            <span class="callout-icon"><svg viewBox="0 0 20 20" width="18" height="18" fill="#4a8c2a"><path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm1 15H9V9h2v6zm0-8H9V5h2v2z"/></svg></span>
             <div>These are the Linux user's credentials on the target server. For key-based auth, paste the private key under <strong>Authentication</strong>.</div>
           </div>
         </div>
@@ -996,7 +1004,7 @@ podman run -d \
     <!-- RDP Auth Flow -->
     <div class="step" style="margin-top:1.5rem;">
       <div class="step-header">
-        <div class="step-number" style="background:linear-gradient(135deg, #3c64b4, #5a8abf);">&#8644;</div>
+        <div class="step-number" style="background:linear-gradient(135deg, #3c64b4, #5a8abf);">?</div>
         <h3>RDP Authentication Flow</h3>
       </div>
       <p>RDP connections to GNOME Remote Desktop use a two-stage authentication process:</p>
@@ -1018,7 +1026,7 @@ podman run -d \
     <!-- SSH Tips -->
     <div class="step">
       <div class="step-header">
-        <div class="step-number" style="background:linear-gradient(135deg, #2d5016, #4a8c2a);">&#9881;</div>
+        <div class="step-number" style="background:linear-gradient(135deg, #2d5016, #4a8c2a);">+</div>
         <h3>SSH Optional Settings</h3>
       </div>
       <p>Additional settings available when creating an SSH connection:</p>
@@ -1046,8 +1054,8 @@ podman run -d \
     </p>
 
     <div class="sub-tabs">
-      <button class="sub-tab active" onclick="showSubSection('client-rdp', this)">&#128421; RDP &mdash; GNOME Remote Desktop</button>
-      <button class="sub-tab" onclick="showSubSection('client-ssh', this)">&#128273; SSH &mdash; OpenSSH Server</button>
+      <button class="sub-tab active" onclick="showSubSection('client-rdp', this)">RDP &mdash; GNOME Remote Desktop</button>
+      <button class="sub-tab" onclick="showSubSection('client-ssh', this)">SSH &mdash; OpenSSH Server</button>
     </div>
 
     <!-- ===== RDP Sub-section ===== -->
@@ -1157,7 +1165,7 @@ sudo runuser -u gnome-remote-desktop -- \
   -noout -check</code></pre>
         </div>
         <div class="callout callout-info">
-          <span class="callout-icon">&#9989;</span>
+          <span class="callout-icon"><svg viewBox="0 0 20 20" width="18" height="18" fill="#4a8c2a"><path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm-2 15l-5-5 1.41-1.41L8 12.17l7.59-7.59L17 6l-9 9z"/></svg></span>
           <div>The private-key test should report <span class="ic">Key is valid</span></div>
         </div>
       </div>
@@ -1186,7 +1194,7 @@ sudo systemctl enable --now gnome-remote-desktop.service
 sudo systemctl restart gnome-remote-desktop.service</code></pre>
         </div>
         <div class="callout callout-warn">
-          <span class="callout-icon">&#9888;</span>
+          <span class="callout-icon"><svg viewBox="0 0 20 20" width="18" height="18" fill="#b8862a"><path d="M1 18h18L10 1 1 18zm10.5-2.5h-3v-1h3v1zm0-2h-3v-4h3v4z"/></svg></span>
           <div><span class="ic">rdpuser</span> is an RDP gateway credential managed by GNOME Remote Desktop. It does not need to exist in <span class="ic">/etc/passwd</span>.</div>
         </div>
       </div>
@@ -1241,7 +1249,7 @@ sudo journalctl -u gnome-remote-desktop.service -n 50 --no-pager</code></pre>
         </div>
         <p>A successful startup shows <span class="ic">RDP server started</span> in the journal.</p>
         <div class="callout callout-info">
-          <span class="callout-icon">&#128161;</span>
+          <span class="callout-icon"><svg viewBox="0 0 20 20" width="18" height="18" fill="#4a8c2a"><path d="M10 1C6.14 1 3 4.14 3 8c0 2.38 1.19 4.47 3 5.74V16c0 .55.45 1 1 1h1v1c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-1h1c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2 12.7V16H8v-2.3C6.48 12.63 5 10.5 5 8c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.5-1.48 4.63-3 5.7z"/></svg></span>
           <div>The message <span class="ic">Init TPM credentials failed... using GKeyFile as fallback</span> is harmless on VMs without a TPM.</div>
         </div>
       </div>
@@ -1380,7 +1388,7 @@ ClientAliveCountMax 2</code></pre>
 ssh-copy-id &lt;username&gt;@&lt;RHEL_SERVER_IP&gt;</code></pre>
         </div>
         <div class="callout callout-info">
-          <span class="callout-icon">&#128161;</span>
+          <span class="callout-icon"><svg viewBox="0 0 20 20" width="18" height="18" fill="#4a8c2a"><path d="M10 1C6.14 1 3 4.14 3 8c0 2.38 1.19 4.47 3 5.74V16c0 .55.45 1 1 1h1v1c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-1h1c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2 12.7V16H8v-2.3C6.48 12.63 5 10.5 5 8c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.5-1.48 4.63-3 5.7z"/></svg></span>
           <div>The private key can then be pasted into the Guacamole SSH connection configuration under <strong>Authentication</strong>.</div>
         </div>
       </div>
