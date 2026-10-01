@@ -4,8 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RHEL Guacamole - Remote Desktop Made Easy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&family=Red+Hat+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
+      --rh-red: #EE0000;
+      --rh-red-dark: #A30000;
       --green-dark: #1a3a0a;
       --green-mid: #2d5016;
       --green-light: #4a8c2a;
@@ -26,7 +31,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Red Hat Display', system-ui, -apple-system, sans-serif;
       background: var(--cream);
       color: var(--text);
       line-height: 1.7;
@@ -72,12 +77,12 @@
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      gap: 1rem;
+      gap: 1.5rem;
       margin-bottom: 2rem;
     }
 
     .hero-images .avocado-img {
-      width: 100px;
+      width: 110px;
       height: auto;
       filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
       animation: bobA 4s ease-in-out infinite;
@@ -101,21 +106,26 @@
     }
 
     .hero h1 {
-      font-size: 3rem;
-      font-weight: 800;
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 900;
       margin-bottom: 0.5rem;
       letter-spacing: -0.02em;
     }
 
-    .hero h1 span {
+    .hero h1 .rh {
+      color: #ff6b6b;
+    }
+
+    .hero h1 .guac {
       color: var(--green-pale);
     }
 
     .hero .subtitle {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       opacity: 0.9;
       margin-bottom: 2rem;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     .hero-badges {
@@ -138,6 +148,11 @@
       border: 1px solid rgba(255,255,255,0.2);
     }
 
+    .badge-rh {
+      background: rgba(238, 0, 0, 0.25);
+      border-color: rgba(238, 0, 0, 0.4);
+    }
+
     /* Navigation */
     .nav-bar {
       background: var(--card-bg);
@@ -149,18 +164,21 @@
     }
 
     .nav-inner {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
       display: flex;
       gap: 0;
+      overflow-x: auto;
     }
 
     .nav-tab {
       flex: 1;
-      padding: 1rem 1.5rem;
+      min-width: 100px;
+      padding: 0.9rem 1rem;
       text-align: center;
+      font-family: 'Red Hat Display', sans-serif;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       cursor: pointer;
       border-bottom: 3px solid transparent;
       transition: all 0.2s;
@@ -169,7 +187,6 @@
       border-top: none;
       border-left: none;
       border-right: none;
-      font-family: inherit;
     }
 
     .nav-tab:hover {
@@ -185,13 +202,13 @@
 
     .nav-tab .tab-icon {
       display: block;
-      font-size: 1.2rem;
-      margin-bottom: 0.2rem;
+      font-size: 1.1rem;
+      margin-bottom: 0.15rem;
     }
 
     /* Main content */
     .main {
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 2.5rem 1.5rem 4rem;
     }
@@ -204,22 +221,74 @@
       display: block;
     }
 
-    /* Architecture diagram */
-    .arch-card {
-      background: var(--code-bg);
-      border-radius: 12px;
-      padding: 1.5rem 2rem;
-      margin: 1.5rem 0 2rem;
-      overflow-x: auto;
-      border: 1px solid rgba(255,255,255,0.08);
+    .section-title {
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: var(--green-dark);
     }
 
-    .arch-card pre {
-      color: var(--code-text);
-      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      margin: 0;
+    .section-subtitle {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      font-size: 1.02rem;
+    }
+
+    /* Sub-tabs (for client section) */
+    .sub-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .sub-tab {
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      font-family: 'Red Hat Display', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: 2px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text-light);
+      transition: all 0.2s;
+    }
+
+    .sub-tab:hover {
+      border-color: var(--green-bright);
+      color: var(--green-mid);
+    }
+
+    .sub-tab.active {
+      background: var(--green-mid);
+      border-color: var(--green-mid);
+      color: white;
+    }
+
+    .sub-section {
+      display: none;
+    }
+
+    .sub-section.active {
+      display: block;
+    }
+
+    /* Architecture SVG diagram */
+    .arch-svg-wrap {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0 2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px var(--shadow);
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    .arch-svg-wrap svg {
+      max-width: 100%;
+      height: auto;
     }
 
     /* Steps */
@@ -259,14 +328,22 @@
     }
 
     .step h3 {
+      font-family: 'Red Hat Display', sans-serif;
       font-size: 1.15rem;
       font-weight: 700;
       color: var(--green-dark);
     }
 
-    .step p {
+    .step p, .step li {
       margin-bottom: 0.75rem;
       color: var(--text-light);
+    }
+
+    .step h4 {
+      font-family: 'Red Hat Display', sans-serif;
+      color: var(--green-dark);
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
     }
 
     /* Code blocks */
@@ -283,10 +360,11 @@
       align-items: center;
       justify-content: space-between;
       padding: 0.5rem 1rem;
-      font-size: 0.75rem;
+      font-family: 'Red Hat Mono', monospace;
+      font-size: 0.72rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       color: #888;
       background: rgba(255,255,255,0.03);
       border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -300,7 +378,7 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 0.7rem;
-      font-family: inherit;
+      font-family: 'Red Hat Display', sans-serif;
       transition: all 0.15s;
     }
 
@@ -312,7 +390,7 @@
     .code-block pre {
       padding: 1rem;
       overflow-x: auto;
-      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-family: 'Red Hat Mono', 'JetBrains Mono', monospace;
       font-size: 0.82rem;
       line-height: 1.65;
       color: var(--code-text);
@@ -324,16 +402,16 @@
     }
 
     /* Inline code */
-    .inline-code {
+    .ic {
       background: rgba(45, 80, 22, 0.08);
       padding: 0.15rem 0.4rem;
       border-radius: 4px;
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-family: 'Red Hat Mono', monospace;
       font-size: 0.85em;
       color: var(--green-mid);
     }
 
-    /* Info/warning callouts */
+    /* Callouts */
     .callout {
       border-radius: 8px;
       padding: 1rem 1.25rem;
@@ -344,26 +422,10 @@
       font-size: 0.9rem;
     }
 
-    .callout-icon {
-      font-size: 1.1rem;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-    }
-
-    .callout-info {
-      background: rgba(74, 140, 42, 0.08);
-      border-left: 3px solid var(--green-bright);
-    }
-
-    .callout-warn {
-      background: rgba(212, 164, 74, 0.12);
-      border-left: 3px solid var(--gold);
-    }
-
-    .callout-danger {
-      background: rgba(200, 50, 50, 0.08);
-      border-left: 3px solid #c83232;
-    }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .callout-info { background: rgba(74, 140, 42, 0.08); border-left: 3px solid var(--green-bright); }
+    .callout-warn { background: rgba(212, 164, 74, 0.12); border-left: 3px solid var(--gold); }
+    .callout-danger { background: rgba(200, 50, 50, 0.08); border-left: 3px solid #c83232; }
 
     /* Tables */
     .table-wrap {
@@ -384,6 +446,7 @@
       color: white;
       padding: 0.75rem 1rem;
       text-align: left;
+      font-family: 'Red Hat Display', sans-serif;
       font-weight: 600;
       font-size: 0.8rem;
       text-transform: uppercase;
@@ -396,13 +459,8 @@
       vertical-align: top;
     }
 
-    tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    tbody tr:hover {
-      background: rgba(74, 140, 42, 0.03);
-    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: rgba(74, 140, 42, 0.03); }
 
     /* Auth flow diagram */
     .flow-diagram {
@@ -418,32 +476,23 @@
       display: inline-block;
       padding: 0.6rem 1.2rem;
       border-radius: 8px;
+      font-family: 'Red Hat Display', sans-serif;
       font-weight: 600;
       font-size: 0.85rem;
       margin: 0.25rem;
     }
 
-    .flow-arrow {
-      display: block;
-      color: var(--green-bright);
-      font-size: 1.2rem;
-      margin: 0.3rem 0;
-    }
-
-    .flow-label {
-      font-size: 0.75rem;
-      color: var(--text-light);
-      font-style: italic;
-    }
-
+    .flow-arrow { display: block; color: var(--green-bright); font-size: 1.2rem; margin: 0.3rem 0; }
+    .flow-label { font-size: 0.75rem; color: var(--text-light); font-style: italic; }
     .flow-green { background: rgba(74, 140, 42, 0.12); color: var(--green-dark); border: 1px solid rgba(74, 140, 42, 0.25); }
     .flow-gold { background: rgba(212, 164, 74, 0.15); color: var(--gold-dark); border: 1px solid rgba(212, 164, 74, 0.3); }
     .flow-blue { background: rgba(60, 100, 180, 0.1); color: #2c4a80; border: 1px solid rgba(60, 100, 180, 0.2); }
+    .flow-red { background: rgba(238, 0, 0, 0.08); color: #8a0000; border: 1px solid rgba(238, 0, 0, 0.2); }
 
-    /* Overview section */
+    /* Overview cards */
     .overview-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1rem;
       margin: 1.5rem 0;
     }
@@ -457,21 +506,82 @@
       box-shadow: 0 2px 6px var(--shadow);
     }
 
-    .overview-card .card-icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
+    .overview-card .card-icon { font-size: 2rem; margin-bottom: 0.5rem; }
 
     .overview-card h4 {
+      font-family: 'Red Hat Display', sans-serif;
       font-size: 0.95rem;
       margin-bottom: 0.3rem;
       color: var(--green-dark);
     }
 
-    .overview-card p {
-      font-size: 0.82rem;
-      color: var(--text-light);
+    .overview-card p { font-size: 0.82rem; color: var(--text-light); }
+
+    /* Connection example cards */
+    .conn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
     }
+
+    .conn-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px var(--shadow);
+      overflow: hidden;
+    }
+
+    .conn-card-header {
+      padding: 1rem 1.5rem;
+      font-family: 'Red Hat Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .conn-card-header.rdp-header {
+      background: linear-gradient(135deg, rgba(60, 100, 180, 0.1), rgba(60, 100, 180, 0.05));
+      color: #2c4a80;
+      border-bottom: 2px solid rgba(60, 100, 180, 0.15);
+    }
+
+    .conn-card-header.ssh-header {
+      background: linear-gradient(135deg, rgba(74, 140, 42, 0.1), rgba(74, 140, 42, 0.05));
+      color: var(--green-dark);
+      border-bottom: 2px solid rgba(74, 140, 42, 0.15);
+    }
+
+    .conn-card-header.vnc-header {
+      background: linear-gradient(135deg, rgba(212, 164, 74, 0.12), rgba(212, 164, 74, 0.05));
+      color: var(--gold-dark);
+      border-bottom: 2px solid rgba(212, 164, 74, 0.2);
+    }
+
+    .conn-card-body {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .conn-card-body p {
+      color: var(--text-light);
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .conn-field {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 0.88rem;
+    }
+
+    .conn-field:last-child { border-bottom: none; }
+    .conn-field-label { font-weight: 600; color: var(--text); }
+    .conn-field-value { font-family: 'Red Hat Mono', monospace; font-size: 0.82rem; color: var(--text-light); }
 
     /* Footer */
     .footer {
@@ -482,23 +592,18 @@
       font-size: 0.85rem;
     }
 
-    .footer a {
-      color: var(--green-pale);
-      text-decoration: none;
-    }
-
-    .footer a:hover {
-      text-decoration: underline;
-    }
+    .footer a { color: var(--green-pale); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
 
     /* Responsive */
     @media (max-width: 640px) {
-      .hero h1 { font-size: 2rem; }
+      .hero h1 { font-size: 2.2rem; }
       .hero .subtitle { font-size: 1rem; }
-      .hero-images .avocado-img { width: 70px; }
+      .hero-images .avocado-img { width: 80px; }
       .hero-images .guac-img { width: 130px; }
       .step { padding: 1.25rem; }
       .main { padding: 1.5rem 1rem 3rem; }
+      .conn-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -508,13 +613,13 @@
 <header class="hero">
   <div class="hero-content">
     <div class="hero-images">
-      <img src="assets/avocado.svg" alt="Avocado" class="avocado-img">
+      <img src="assets/avocado-fedora.svg" alt="Avocado with Fedora" class="avocado-img">
       <img src="assets/guacamole.svg" alt="Guacamole Bowl" class="guac-img">
     </div>
-    <h1>RHEL <span>Guacamole</span></h1>
+    <h1><span class="rh">RHEL</span> <span class="guac">Guacamole</span></h1>
     <p class="subtitle">Browser-based remote desktop for RHEL, powered by Apache Guacamole and Podman</p>
     <div class="hero-badges">
-      <span class="badge">RHEL 10</span>
+      <span class="badge badge-rh">RHEL 10</span>
       <span class="badge">Guacamole 1.6.0</span>
       <span class="badge">Podman (Rootless)</span>
       <span class="badge">RDP + SSH</span>
@@ -525,21 +630,20 @@
 <!-- Navigation -->
 <nav class="nav-bar">
   <div class="nav-inner">
-    <button class="nav-tab active" onclick="showSection('overview')">
-      <span class="tab-icon">&#127968;</span>
-      Overview
+    <button class="nav-tab active" onclick="showSection('overview', this)">
+      <span class="tab-icon">&#127968;</span> Overview
     </button>
-    <button class="nav-tab" onclick="showSection('server')">
-      <span class="tab-icon">&#9881;&#65039;</span>
-      Server Setup
+    <button class="nav-tab" onclick="showSection('server', this)">
+      <span class="tab-icon">&#9881;&#65039;</span> Server Setup
     </button>
-    <button class="nav-tab" onclick="showSection('client')">
-      <span class="tab-icon">&#128421;</span>
-      Client Setup
+    <button class="nav-tab" onclick="showSection('connections', this)">
+      <span class="tab-icon">&#128279;</span> Connections
     </button>
-    <button class="nav-tab" onclick="showSection('troubleshooting')">
-      <span class="tab-icon">&#128269;</span>
-      Troubleshooting
+    <button class="nav-tab" onclick="showSection('client', this)">
+      <span class="tab-icon">&#128421;</span> Client Setup
+    </button>
+    <button class="nav-tab" onclick="showSection('troubleshooting', this)">
+      <span class="tab-icon">&#128269;</span> Troubleshooting
     </button>
   </div>
 </nav>
@@ -547,11 +651,11 @@
 <!-- Main Content -->
 <main class="main">
 
-  <!-- Overview Section -->
+  <!-- ==================== OVERVIEW ==================== -->
   <section id="overview" class="guide-section active">
-    <h2 style="font-size:1.6rem; margin-bottom:0.5rem; color:var(--green-dark);">What is this?</h2>
-    <p style="color:var(--text-light); margin-bottom:1.5rem;">
-      A complete guide to deploying <strong>Apache Guacamole</strong> on RHEL using rootless Podman containers, and configuring RHEL workstations as RDP targets with GNOME Remote Desktop. Access your Linux desktops and servers from any browser &mdash; no client software needed.
+    <h2 class="section-title">What is this?</h2>
+    <p class="section-subtitle">
+      A complete guide to deploying <strong>Apache Guacamole</strong> on RHEL using rootless Podman containers, and configuring RHEL machines as RDP and SSH targets. Access your Linux desktops and servers from any browser &mdash; no client software needed.
     </p>
 
     <div class="overview-grid">
@@ -568,7 +672,7 @@
       <div class="overview-card">
         <div class="card-icon">&#128421;</div>
         <h4>RDP &amp; SSH</h4>
-        <p>Connect to graphical GNOME desktops via RDP or headless servers via SSH.</p>
+        <p>Graphical GNOME desktops via RDP and headless servers via SSH.</p>
       </div>
       <div class="overview-card">
         <div class="card-icon">&#128450;</div>
@@ -577,44 +681,100 @@
       </div>
     </div>
 
-    <h3 style="font-size:1.2rem; margin: 2rem 0 0.75rem; color:var(--green-dark);">Architecture</h3>
-    <div class="arch-card">
-<pre>
-  Browser
-     |
-     v
-  Guacamole Web App :8080        &lt;-- Guacamole Server
-     |
-     v
-  guacd :4822
-     |
-     +------ RDP :3389 -------&gt; RHEL Workstation   &lt;-- Client (GNOME Remote Desktop)
-     |
-     +------ SSH :22 ---------&gt; RHEL Server
-     |
-     v
-  PostgreSQL
-</pre>
+    <h3 class="section-title" style="font-size:1.2rem; margin-top:2.5rem;">Architecture</h3>
+
+    <!-- SVG Architecture Diagram -->
+    <div class="arch-svg-wrap">
+      <svg viewBox="0 0 680 400" width="680" height="400" xmlns="http://www.w3.org/2000/svg" font-family="'Red Hat Display', system-ui, sans-serif">
+        <defs>
+          <marker id="arrowG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#8fbf30" />
+          </marker>
+          <marker id="arrowB" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#5a8abf" />
+          </marker>
+          <filter id="shadow1" x="-4%" y="-4%" width="108%" height="116%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.08"/>
+          </filter>
+        </defs>
+
+        <!-- Browser -->
+        <rect x="225" y="10" width="170" height="44" rx="10" fill="#fff" stroke="#ccc" stroke-width="1.5" filter="url(#shadow1)"/>
+        <text x="310" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="#333">Browser</text>
+
+        <!-- Arrow: Browser → Guacamole -->
+        <line x1="310" y1="54" x2="310" y2="86" stroke="#8fbf30" stroke-width="2" marker-end="url(#arrowG)"/>
+
+        <!-- Guacamole Web App -->
+        <rect x="195" y="90" width="230" height="48" rx="10" fill="#2d5016" filter="url(#shadow1)"/>
+        <text x="310" y="119" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Guacamole Web App</text>
+        <text x="310" y="133" text-anchor="middle" font-size="10" fill="#c6d94e" font-weight="500">:8080</text>
+
+        <!-- Arrow: Guacamole → PostgreSQL (right) -->
+        <line x1="425" y1="114" x2="478" y2="114" stroke="#d4a44a" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowB)"/>
+
+        <!-- PostgreSQL -->
+        <rect x="485" y="92" width="150" height="44" rx="10" fill="#d4a44a" filter="url(#shadow1)"/>
+        <text x="560" y="119" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">PostgreSQL</text>
+
+        <!-- Arrow: Guacamole → guacd -->
+        <line x1="310" y1="138" x2="310" y2="178" stroke="#8fbf30" stroke-width="2" marker-end="url(#arrowG)"/>
+
+        <!-- guacd -->
+        <rect x="215" y="182" width="190" height="48" rx="10" fill="#4a8c2a" filter="url(#shadow1)"/>
+        <text x="310" y="211" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">guacd</text>
+        <text x="310" y="225" text-anchor="middle" font-size="10" fill="#c6d94e" font-weight="500">:4822</text>
+
+        <!-- Fork: guacd → RDP (left) -->
+        <path d="M 270,230 L 270,260 Q 270,270 260,270 L 170,270 L 170,286" fill="none" stroke="#5a8abf" stroke-width="2" marker-end="url(#arrowB)"/>
+
+        <!-- Fork: guacd → SSH (right) -->
+        <path d="M 350,230 L 350,260 Q 350,270 360,270 L 450,270 L 450,286" fill="none" stroke="#8fbf30" stroke-width="2" marker-end="url(#arrowG)"/>
+
+        <!-- RDP protocol badge -->
+        <rect x="110" y="290" width="120" height="36" rx="8" fill="#3c64b4" filter="url(#shadow1)"/>
+        <text x="170" y="313" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">RDP :3389</text>
+
+        <!-- Arrow: RDP → Workstation -->
+        <line x1="170" y1="326" x2="170" y2="348" stroke="#5a8abf" stroke-width="2" marker-end="url(#arrowB)"/>
+
+        <!-- RHEL Workstation -->
+        <rect x="80" y="352" width="180" height="38" rx="8" fill="#fff" stroke="#3c64b4" stroke-width="1.5" filter="url(#shadow1)"/>
+        <text x="170" y="376" text-anchor="middle" font-size="11.5" font-weight="600" fill="#2c4a80">RHEL Workstation</text>
+
+        <!-- SSH protocol badge -->
+        <rect x="390" y="290" width="120" height="36" rx="8" fill="#2d5016" filter="url(#shadow1)"/>
+        <text x="450" y="313" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">SSH :22</text>
+
+        <!-- Arrow: SSH → Server -->
+        <line x1="450" y1="326" x2="450" y2="348" stroke="#8fbf30" stroke-width="2" marker-end="url(#arrowG)"/>
+
+        <!-- RHEL Server -->
+        <rect x="370" y="352" width="160" height="38" rx="8" fill="#fff" stroke="#2d5016" stroke-width="1.5" filter="url(#shadow1)"/>
+        <text x="450" y="376" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1a3a0a">RHEL Server</text>
+
+        <!-- Labels -->
+        <text x="48" y="376" text-anchor="middle" font-size="9" fill="#999" font-style="italic">Client</text>
+        <text x="48" y="313" text-anchor="middle" font-size="9" fill="#999" font-style="italic">Protocol</text>
+        <text x="48" y="119" text-anchor="middle" font-size="9" fill="#999" font-style="italic">Server</text>
+      </svg>
     </div>
 
     <div class="callout callout-info">
       <span class="callout-icon">&#9432;</span>
       <div>
-        <strong>Two parts to configure:</strong> The <em>Server</em> tab covers deploying Guacamole itself. The <em>Client</em> tab covers preparing a RHEL workstation to accept incoming RDP connections.
+        <strong>Three things to set up:</strong> The <em>Server Setup</em> tab deploys Guacamole itself. The <em>Connections</em> tab shows how to add RDP and SSH targets. The <em>Client Setup</em> tab prepares RHEL machines to accept incoming connections.
       </div>
     </div>
   </section>
 
-  <!-- Server Setup Section -->
+  <!-- ==================== SERVER SETUP ==================== -->
   <section id="server" class="guide-section">
-    <h2 style="font-size:1.6rem; margin-bottom:1rem; color:var(--green-dark);">
-      Guacamole Server Setup
-    </h2>
-    <p style="color:var(--text-light); margin-bottom: 1.5rem;">
+    <h2 class="section-title">Guacamole Server Setup</h2>
+    <p class="section-subtitle">
       Deploy Apache Guacamole 1.6.0 on RHEL using rootless Podman. Three containers &mdash; PostgreSQL, guacd, and the Guacamole web app &mdash; all on a private container network.
     </p>
 
-    <!-- Step 1 -->
     <div class="step">
       <div class="step-header">
         <div class="step-number">1</div>
@@ -629,7 +789,6 @@ cd ~/guacamole</code></pre>
       </div>
     </div>
 
-    <!-- Step 2 -->
     <div class="step">
       <div class="step-header">
         <div class="step-number">2</div>
@@ -642,7 +801,6 @@ cd ~/guacamole</code></pre>
       </div>
     </div>
 
-    <!-- Step 3 -->
     <div class="step">
       <div class="step-header">
         <div class="step-number">3</div>
@@ -653,10 +811,9 @@ cd ~/guacamole</code></pre>
         <pre><code>podman run --rm docker.io/guacamole/guacamole:1.6.0 \
   /opt/guacamole/bin/initdb.sh --postgresql > initdb.sql</code></pre>
       </div>
-      <p>Verify with <span class="inline-code">ls -lh initdb.sql</span></p>
+      <p>Verify with <span class="ic">ls -lh initdb.sql</span></p>
     </div>
 
-    <!-- Step 4 -->
     <div class="step">
       <div class="step-header">
         <div class="step-number">4</div>
@@ -679,11 +836,10 @@ podman run -d \
       </div>
       <div class="callout callout-warn">
         <span class="callout-icon">&#9888;</span>
-        <div>Replace <span class="inline-code">CHANGE_ME_DB_PASSWORD</span> with a strong password. The initialization scripts only execute when the data directory is empty.</div>
+        <div>Replace <span class="ic">CHANGE_ME_DB_PASSWORD</span> with a strong password. The initialization scripts only execute when the data directory is empty.</div>
       </div>
     </div>
 
-    <!-- Step 5 -->
     <div class="step">
       <div class="step-header">
         <div class="step-number">5</div>
@@ -699,11 +855,10 @@ podman run -d \
       </div>
       <div class="callout callout-info">
         <span class="callout-icon">&#128161;</span>
-        <div>For verbose logging, add <span class="inline-code">-e LOG_LEVEL=debug</span> to the command.</div>
+        <div>For verbose logging, add <span class="ic">-e LOG_LEVEL=debug</span> to the command.</div>
       </div>
     </div>
 
-    <!-- Step 6 -->
     <div class="step">
       <div class="step-header">
         <div class="step-number">6</div>
@@ -727,10 +882,9 @@ podman run -d \
         <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
         <pre><code>podman ps</code></pre>
       </div>
-      <p>Expected: <span class="inline-code">guac-postgres</span>, <span class="inline-code">guacd</span>, <span class="inline-code">guacamole</span></p>
+      <p>Expected: <span class="ic">guac-postgres</span>, <span class="ic">guacd</span>, <span class="ic">guacamole</span></p>
     </div>
 
-    <!-- Step 7 -->
     <div class="step">
       <div class="step-header">
         <div class="step-number">7</div>
@@ -743,8 +897,8 @@ podman run -d \
       </div>
       <p>Default credentials:</p>
       <div style="display:flex; gap:1rem; margin: 0.5rem 0; flex-wrap: wrap;">
-        <span class="inline-code">Username: guacadmin</span>
-        <span class="inline-code">Password: guacadmin</span>
+        <span class="ic">Username: guacadmin</span>
+        <span class="ic">Password: guacadmin</span>
       </div>
       <div class="callout callout-danger">
         <span class="callout-icon">&#128721;</span>
@@ -752,54 +906,12 @@ podman run -d \
       </div>
     </div>
 
-    <!-- Step 8 -->
     <div class="step">
       <div class="step-header">
         <div class="step-number">8</div>
-        <h3>Create an RDP Connection</h3>
-      </div>
-      <p>Navigate to <strong>Settings &rarr; Connections &rarr; New Connection</strong> and configure:</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Field</th><th>Value</th></tr></thead>
-          <tbody>
-            <tr><td>Name</td><td>RHEL Workstation</td></tr>
-            <tr><td>Protocol</td><td>RDP</td></tr>
-            <tr><td>Hostname</td><td><em>&lt;RHEL_WORKSTATION_IP&gt;</em></td></tr>
-            <tr><td>Port</td><td>3389</td></tr>
-            <tr><td>Username</td><td>rdpuser</td></tr>
-            <tr><td>Password</td><td><em>&lt;RDP_GATEWAY_PASSWORD&gt;</em></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="callout callout-info">
-        <span class="callout-icon">&#9432;</span>
-        <div>These are the GNOME Remote Desktop <strong>gateway</strong> credentials, not the Linux user's credentials. If using a self-signed certificate, enable <strong>Ignore server certificate</strong>.</div>
-      </div>
-
-      <h4 style="margin-top:1.25rem; margin-bottom:0.5rem; color:var(--green-dark);">Authentication Flow</h4>
-      <div class="flow-diagram">
-        <div class="flow-step-box flow-green">Guacamole</div>
-        <span class="flow-arrow">&#x25BC;</span>
-        <span class="flow-label">rdpuser / RDP gateway password</span>
-        <span class="flow-arrow">&#x25BC;</span>
-        <div class="flow-step-box flow-gold">GNOME Remote Desktop</div>
-        <span class="flow-arrow">&#x25BC;</span>
-        <div class="flow-step-box flow-blue">GDM Login Screen</div>
-        <span class="flow-arrow">&#x25BC;</span>
-        <span class="flow-label">sysadmin / Linux password</span>
-        <span class="flow-arrow">&#x25BC;</span>
-        <div class="flow-step-box flow-green">GNOME Desktop</div>
-      </div>
-    </div>
-
-    <!-- Step 9 -->
-    <div class="step">
-      <div class="step-header">
-        <div class="step-number">9</div>
         <h3>Persistence</h3>
       </div>
-      <p>All configuration and users are stored in PostgreSQL. The <span class="inline-code">guacamole</span> and <span class="inline-code">guacd</span> containers can be recreated without data loss, as long as the PostgreSQL volume is retained.</p>
+      <p>All configuration and users are stored in PostgreSQL. The <span class="ic">guacamole</span> and <span class="ic">guacd</span> containers can be recreated without data loss, as long as the PostgreSQL volume is retained.</p>
       <div class="code-block">
         <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
         <pre><code>podman volume inspect guac-pgdata</code></pre>
@@ -816,42 +928,161 @@ podman run -d \
     </div>
   </section>
 
-  <!-- Client Setup Section -->
-  <section id="client" class="guide-section">
-    <h2 style="font-size:1.6rem; margin-bottom:1rem; color:var(--green-dark);">
-      RHEL Workstation Client Setup
-    </h2>
-    <p style="color:var(--text-light); margin-bottom: 1.5rem;">
-      Configure a RHEL 10 workstation for GNOME Remote Desktop <strong>Remote Login</strong>. This allows RDP clients (including Guacamole) to reach the GDM login screen even when no user is logged in.
+  <!-- ==================== CONNECTIONS ==================== -->
+  <section id="connections" class="guide-section">
+    <h2 class="section-title">Adding Connections</h2>
+    <p class="section-subtitle">
+      Once Guacamole is running, add connections for each target machine. Navigate to <strong>Settings &rarr; Connections &rarr; New Connection</strong> in the Guacamole web UI.
     </p>
 
-    <div class="arch-card">
-<pre>
-  RDP Client
-      |
-      | TCP/3389
-      v
-  GNOME Remote Desktop (system daemon)
-      |
-      | RDP gateway authentication
-      v
-  GDM
-      |
-      | Linux authentication
-      v
-  GNOME Wayland session &rarr; PipeWire &rarr; Remote Desktop
-</pre>
+    <div class="conn-grid">
+      <!-- RDP Connection Card -->
+      <div class="conn-card">
+        <div class="conn-card-header rdp-header">
+          <span>&#128421;</span> RDP Connection
+        </div>
+        <div class="conn-card-body">
+          <p>Connect to a RHEL workstation running GNOME Remote Desktop.</p>
+          <div class="conn-field"><span class="conn-field-label">Name</span><span class="conn-field-value">RHEL Workstation</span></div>
+          <div class="conn-field"><span class="conn-field-label">Protocol</span><span class="conn-field-value">RDP</span></div>
+          <div class="conn-field"><span class="conn-field-label">Hostname</span><span class="conn-field-value">&lt;WORKSTATION_IP&gt;</span></div>
+          <div class="conn-field"><span class="conn-field-label">Port</span><span class="conn-field-value">3389</span></div>
+          <div class="conn-field"><span class="conn-field-label">Username</span><span class="conn-field-value">rdpuser</span></div>
+          <div class="conn-field"><span class="conn-field-label">Password</span><span class="conn-field-value">&lt;RDP_GATEWAY_PASSWORD&gt;</span></div>
+          <div class="conn-field"><span class="conn-field-label">Ignore server cert</span><span class="conn-field-value">Enabled</span></div>
+          <div class="callout callout-info" style="margin-top:1rem;">
+            <span class="callout-icon">&#9432;</span>
+            <div>These are the GNOME Remote Desktop <strong>gateway</strong> credentials, not the Linux user's password. See the <em>Client Setup &rarr; RDP</em> tab.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SSH Connection Card -->
+      <div class="conn-card">
+        <div class="conn-card-header ssh-header">
+          <span>&#128273;</span> SSH Connection
+        </div>
+        <div class="conn-card-body">
+          <p>Connect to a RHEL server running OpenSSH.</p>
+          <div class="conn-field"><span class="conn-field-label">Name</span><span class="conn-field-value">RHEL Server</span></div>
+          <div class="conn-field"><span class="conn-field-label">Protocol</span><span class="conn-field-value">SSH</span></div>
+          <div class="conn-field"><span class="conn-field-label">Hostname</span><span class="conn-field-value">&lt;SERVER_IP&gt;</span></div>
+          <div class="conn-field"><span class="conn-field-label">Port</span><span class="conn-field-value">22</span></div>
+          <div class="conn-field"><span class="conn-field-label">Username</span><span class="conn-field-value">&lt;linux_user&gt;</span></div>
+          <div class="conn-field"><span class="conn-field-label">Password</span><span class="conn-field-value">&lt;linux_password&gt;</span></div>
+          <div class="callout callout-info" style="margin-top:1rem;">
+            <span class="callout-icon">&#9432;</span>
+            <div>These are the Linux user's credentials on the target server. For key-based auth, paste the private key under <strong>Authentication</strong>.</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Step 1 -->
+    <!-- RDP Auth Flow -->
+    <div class="step" style="margin-top:1.5rem;">
+      <div class="step-header">
+        <div class="step-number" style="background:linear-gradient(135deg, #3c64b4, #5a8abf);">&#8644;</div>
+        <h3>RDP Authentication Flow</h3>
+      </div>
+      <p>RDP connections to GNOME Remote Desktop use a two-stage authentication process:</p>
+      <div class="flow-diagram">
+        <div class="flow-step-box flow-green">Guacamole</div>
+        <span class="flow-arrow">&#x25BC;</span>
+        <span class="flow-label">rdpuser / RDP gateway password</span>
+        <span class="flow-arrow">&#x25BC;</span>
+        <div class="flow-step-box flow-gold">GNOME Remote Desktop</div>
+        <span class="flow-arrow">&#x25BC;</span>
+        <div class="flow-step-box flow-blue">GDM Login Screen</div>
+        <span class="flow-arrow">&#x25BC;</span>
+        <span class="flow-label">sysadmin / Linux password</span>
+        <span class="flow-arrow">&#x25BC;</span>
+        <div class="flow-step-box flow-green">GNOME Desktop</div>
+      </div>
+    </div>
+
+    <!-- SSH Tips -->
     <div class="step">
       <div class="step-header">
-        <div class="step-number">1</div>
-        <h3>Install Required Components</h3>
+        <div class="step-number" style="background:linear-gradient(135deg, #2d5016, #4a8c2a);">&#9881;</div>
+        <h3>SSH Optional Settings</h3>
       </div>
-      <div class="code-block">
-        <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-        <pre><code>sudo dnf install -y \
+      <p>Additional settings available when creating an SSH connection:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Setting</th><th>Where to find it</th><th>Use case</th></tr></thead>
+          <tbody>
+            <tr><td>Private key</td><td>Authentication section</td><td>Key-based login instead of password</td></tr>
+            <tr><td>SFTP enable</td><td>SFTP section</td><td>File browser panel alongside the terminal</td></tr>
+            <tr><td>Color scheme</td><td>Display section</td><td>Change terminal colors (green-on-black, etc.)</td></tr>
+            <tr><td>Font size</td><td>Display section</td><td>Adjust terminal font size</td></tr>
+            <tr><td>Server keepalive</td><td>Network section</td><td>Prevent idle disconnects</td></tr>
+            <tr><td>Recording path</td><td>Recording section</td><td>Audit logging of sessions</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CLIENT SETUP ==================== -->
+  <section id="client" class="guide-section">
+    <h2 class="section-title">Client Setup</h2>
+    <p class="section-subtitle">
+      Configure your RHEL machines to accept incoming connections from Guacamole. Choose the setup guide for your connection type.
+    </p>
+
+    <div class="sub-tabs">
+      <button class="sub-tab active" onclick="showSubSection('client-rdp', this)">&#128421; RDP &mdash; GNOME Remote Desktop</button>
+      <button class="sub-tab" onclick="showSubSection('client-ssh', this)">&#128273; SSH &mdash; OpenSSH Server</button>
+    </div>
+
+    <!-- ===== RDP Sub-section ===== -->
+    <div id="client-rdp" class="sub-section active">
+      <p class="section-subtitle" style="margin-top:0;">
+        Configure a RHEL 10 workstation for GNOME Remote Desktop <strong>Remote Login</strong>. This allows Guacamole to reach the GDM login screen even when no user is logged in.
+      </p>
+
+      <!-- RDP Architecture SVG -->
+      <div class="arch-svg-wrap">
+        <svg viewBox="0 0 480 280" width="480" height="280" xmlns="http://www.w3.org/2000/svg" font-family="'Red Hat Display', system-ui, sans-serif">
+          <defs>
+            <marker id="arrowRdp" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#5a8abf" />
+            </marker>
+            <filter id="sh2" x="-4%" y="-4%" width="108%" height="116%">
+              <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.06"/>
+            </filter>
+          </defs>
+          <rect x="155" y="8" width="170" height="38" rx="8" fill="#3c64b4" filter="url(#sh2)"/>
+          <text x="240" y="32" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">RDP Client (Guacamole)</text>
+          <line x1="240" y1="46" x2="240" y2="68" stroke="#5a8abf" stroke-width="2" marker-end="url(#arrowRdp)"/>
+          <text x="308" y="62" font-size="9" fill="#888">TCP/3389</text>
+
+          <rect x="125" y="72" width="230" height="38" rx="8" fill="#2d5016" filter="url(#sh2)"/>
+          <text x="240" y="96" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">GNOME Remote Desktop</text>
+          <line x1="240" y1="110" x2="240" y2="132" stroke="#5a8abf" stroke-width="2" marker-end="url(#arrowRdp)"/>
+          <text x="310" y="126" font-size="9" fill="#888">RDP gateway auth</text>
+
+          <rect x="185" y="136" width="110" height="38" rx="8" fill="#d4a44a" filter="url(#sh2)"/>
+          <text x="240" y="160" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">GDM</text>
+          <line x1="240" y1="174" x2="240" y2="196" stroke="#5a8abf" stroke-width="2" marker-end="url(#arrowRdp)"/>
+          <text x="310" y="190" font-size="9" fill="#888">Linux auth</text>
+
+          <rect x="115" y="200" width="250" height="38" rx="8" fill="#4a8c2a" filter="url(#sh2)"/>
+          <text x="240" y="224" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">GNOME Wayland + PipeWire</text>
+
+          <rect x="145" y="250" width="190" height="24" rx="6" fill="rgba(74,140,42,0.1)" stroke="#4a8c2a" stroke-width="1"/>
+          <text x="240" y="266" text-anchor="middle" font-size="10" fill="#4a8c2a" font-weight="500">Remote Desktop Stream</text>
+        </svg>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h3>Install Required Components</h3>
+        </div>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>sudo dnf install -y \
   gdm \
   gnome-shell \
   gnome-session \
@@ -860,24 +1091,23 @@ podman run -d \
   pipewire \
   pipewire-pulseaudio \
   wireplumber</code></pre>
-      </div>
-      <p>Enable graphical boot and GDM:</p>
-      <div class="code-block">
-        <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-        <pre><code>sudo systemctl set-default graphical.target
+        </div>
+        <p>Enable graphical boot and GDM:</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>sudo systemctl set-default graphical.target
 sudo systemctl enable --now gdm.service</code></pre>
+        </div>
       </div>
-    </div>
 
-    <!-- Step 2 -->
-    <div class="step">
-      <div class="step-header">
-        <div class="step-number">2</div>
-        <h3>Create the TLS Certificate</h3>
-      </div>
-      <div class="code-block">
-        <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-        <pre><code>sudo mkdir -p /etc/gnome-remote-desktop
+      <div class="step">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h3>Create the TLS Certificate</h3>
+        </div>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>sudo mkdir -p /etc/gnome-remote-desktop
 
 sudo openssl req \
   -x509 \
@@ -887,11 +1117,11 @@ sudo openssl req \
   -subj "/CN=$(hostname -f)" \
   -keyout /etc/gnome-remote-desktop/rdp-tls.key \
   -out /etc/gnome-remote-desktop/rdp-tls.crt</code></pre>
-      </div>
-      <p>Set ownership for the GNOME Remote Desktop daemon:</p>
-      <div class="code-block">
-        <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-        <pre><code>sudo chown gnome-remote-desktop:gnome-remote-desktop \
+        </div>
+        <p>Set ownership for the GNOME Remote Desktop daemon:</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>sudo chown gnome-remote-desktop:gnome-remote-desktop \
   /etc/gnome-remote-desktop/rdp-tls.crt \
   /etc/gnome-remote-desktop/rdp-tls.key
 
@@ -899,33 +1129,32 @@ sudo chmod 644 /etc/gnome-remote-desktop/rdp-tls.crt
 sudo chmod 600 /etc/gnome-remote-desktop/rdp-tls.key
 
 sudo restorecon -RFv /etc/gnome-remote-desktop</code></pre>
-      </div>
-      <p>Verify the daemon can read them:</p>
-      <div class="code-block">
-        <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-        <pre><code>sudo runuser -u gnome-remote-desktop -- \
+        </div>
+        <p>Verify the daemon can read them:</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>sudo runuser -u gnome-remote-desktop -- \
   openssl x509 -in /etc/gnome-remote-desktop/rdp-tls.crt \
   -noout -subject -dates
 
 sudo runuser -u gnome-remote-desktop -- \
   openssl pkey -in /etc/gnome-remote-desktop/rdp-tls.key \
   -noout -check</code></pre>
+        </div>
+        <div class="callout callout-info">
+          <span class="callout-icon">&#9989;</span>
+          <div>The private-key test should report <span class="ic">Key is valid</span></div>
+        </div>
       </div>
-      <div class="callout callout-info">
-        <span class="callout-icon">&#9989;</span>
-        <div>The private-key test should report <span class="inline-code">Key is valid</span></div>
-      </div>
-    </div>
 
-    <!-- Step 3 -->
-    <div class="step">
-      <div class="step-header">
-        <div class="step-number">3</div>
-        <h3>Configure Remote Login</h3>
-      </div>
-      <div class="code-block">
-        <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-        <pre><code># Set TLS certificate and key
+      <div class="step">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <h3>Configure Remote Login</h3>
+        </div>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code># Set TLS certificate and key
 sudo grdctl --system rdp set-tls-cert /etc/gnome-remote-desktop/rdp-tls.crt
 sudo grdctl --system rdp set-tls-key /etc/gnome-remote-desktop/rdp-tls.key
 
@@ -940,39 +1169,38 @@ sudo grdctl --system rdp enable
 # Start the daemon
 sudo systemctl enable --now gnome-remote-desktop.service
 sudo systemctl restart gnome-remote-desktop.service</code></pre>
+        </div>
+        <div class="callout callout-warn">
+          <span class="callout-icon">&#9888;</span>
+          <div><span class="ic">rdpuser</span> is an RDP gateway credential managed by GNOME Remote Desktop. It does not need to exist in <span class="ic">/etc/passwd</span>.</div>
+        </div>
       </div>
-      <div class="callout callout-warn">
-        <span class="callout-icon">&#9888;</span>
-        <div><span class="inline-code">rdpuser</span> is an RDP gateway credential managed by GNOME Remote Desktop. It does not need to exist in <span class="inline-code">/etc/passwd</span>.</div>
-      </div>
-    </div>
 
-    <!-- Step 4 -->
-    <div class="step">
-      <div class="step-header">
-        <div class="step-number">4</div>
-        <h3>Configure PipeWire for the Linux User</h3>
-      </div>
-      <p>GNOME Remote Desktop uses PipeWire for the desktop stream. Run as the Linux user (e.g. <span class="inline-code">sysadmin</span>):</p>
-      <div class="code-block">
-        <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-        <pre><code>systemctl --user enable --now \
+      <div class="step">
+        <div class="step-header">
+          <div class="step-number">4</div>
+          <h3>Configure PipeWire for the Linux User</h3>
+        </div>
+        <p>GNOME Remote Desktop uses PipeWire for the desktop stream. Run as the Linux user (e.g. <span class="ic">sysadmin</span>):</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>systemctl --user enable --now \
   pipewire.socket \
   pipewire-pulse.socket \
   wireplumber.service</code></pre>
-      </div>
-      <p>Verify:</p>
-      <div class="code-block">
-        <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-        <pre><code>systemctl --user status pipewire.socket pipewire.service wireplumber.service
+        </div>
+        <p>Verify:</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>systemctl --user status pipewire.socket pipewire.service wireplumber.service
 ps -ef | grep -E '[p]ipewire|[w]ireplumber'
 ls -l "$XDG_RUNTIME_DIR/pipewire-0"</code></pre>
-      </div>
+        </div>
 
-      <h4 style="margin-top:1rem; margin-bottom:0.5rem; color:var(--green-dark);">Configuring from root (remote provisioning)</h4>
-      <div class="code-block">
-        <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-        <pre><code>UID_SYSADMIN=$(id -u sysadmin)
+        <h4>Configuring from root (remote provisioning)</h4>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>UID_SYSADMIN=$(id -u sysadmin)
 RUNTIME="/run/user/$UID_SYSADMIN"
 
 runuser -u sysadmin -- env \
@@ -982,167 +1210,216 @@ runuser -u sysadmin -- env \
     pipewire.socket \
     pipewire-pulse.socket \
     wireplumber.service</code></pre>
+        </div>
       </div>
-    </div>
 
-    <!-- Step 5 -->
-    <div class="step">
-      <div class="step-header">
-        <div class="step-number">5</div>
-        <h3>Verify RDP</h3>
-      </div>
-      <div class="code-block">
-        <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-        <pre><code>sudo grdctl --system status
+      <div class="step">
+        <div class="step-header">
+          <div class="step-number">5</div>
+          <h3>Verify RDP</h3>
+        </div>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>sudo grdctl --system status
 sudo ss -lntp | grep ':3389'
 sudo journalctl -u gnome-remote-desktop.service -n 50 --no-pager</code></pre>
-      </div>
-      <p>A successful startup shows <span class="inline-code">RDP server started</span> in the journal.</p>
-      <div class="callout callout-info">
-        <span class="callout-icon">&#128161;</span>
-        <div>The message <span class="inline-code">Init TPM credentials failed... using GKeyFile as fallback</span> is harmless on VMs without a TPM.</div>
+        </div>
+        <p>A successful startup shows <span class="ic">RDP server started</span> in the journal.</p>
+        <div class="callout callout-info">
+          <span class="callout-icon">&#128161;</span>
+          <div>The message <span class="ic">Init TPM credentials failed... using GKeyFile as fallback</span> is harmless on VMs without a TPM.</div>
+        </div>
       </div>
     </div>
 
-    <!-- Step 6 -->
-    <div class="step">
-      <div class="step-header">
-        <div class="step-number">6</div>
-        <h3>Login</h3>
-      </div>
-      <p>Connect with your RDP client:</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Field</th><th>Value</th></tr></thead>
-          <tbody>
-            <tr><td>Host</td><td><em>&lt;RHEL_WORKSTATION&gt;</em></td></tr>
-            <tr><td>Port</td><td>3389</td></tr>
-            <tr><td>Username</td><td>rdpuser</td></tr>
-            <tr><td>Password</td><td><em>&lt;RDP_GATEWAY_PASSWORD&gt;</em></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p>Then authenticate at GDM with your Linux credentials.</p>
+    <!-- ===== SSH Sub-section ===== -->
+    <div id="client-ssh" class="sub-section">
+      <p class="section-subtitle" style="margin-top:0;">
+        Configure a RHEL server for SSH access via Guacamole. This is simpler than RDP &mdash; just ensure OpenSSH is running and the firewall allows port 22.
+      </p>
 
-      <h4 style="margin-top:1.25rem; margin-bottom:0.5rem; color:var(--green-dark);">Complete Authentication Flow</h4>
-      <div class="flow-diagram">
-        <div class="flow-step-box flow-blue">RDP Connection</div>
-        <span class="flow-arrow">&#x25BC;</span>
-        <span class="flow-label">rdpuser</span>
-        <span class="flow-arrow">&#x25BC;</span>
-        <div class="flow-step-box flow-gold">GNOME Remote Desktop</div>
-        <span class="flow-arrow">&#x25BC;</span>
-        <div class="flow-step-box flow-blue">GDM</div>
-        <span class="flow-arrow">&#x25BC;</span>
-        <span class="flow-label">sysadmin / Linux password</span>
-        <span class="flow-arrow">&#x25BC;</span>
-        <div class="flow-step-box flow-green">GNOME User Session</div>
+      <!-- SSH Architecture SVG -->
+      <div class="arch-svg-wrap">
+        <svg viewBox="0 0 400 200" width="400" height="200" xmlns="http://www.w3.org/2000/svg" font-family="'Red Hat Display', system-ui, sans-serif">
+          <defs>
+            <marker id="arrowSsh" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#8fbf30" />
+            </marker>
+            <filter id="sh3" x="-4%" y="-4%" width="108%" height="116%">
+              <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.06"/>
+            </filter>
+          </defs>
+          <rect x="100" y="8" width="200" height="38" rx="8" fill="#2d5016" filter="url(#sh3)"/>
+          <text x="200" y="32" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Guacamole (guacd)</text>
+          <line x1="200" y1="46" x2="200" y2="72" stroke="#8fbf30" stroke-width="2" marker-end="url(#arrowSsh)"/>
+          <text x="260" y="64" font-size="9" fill="#888">TCP/22</text>
+
+          <rect x="100" y="76" width="200" height="38" rx="8" fill="#4a8c2a" filter="url(#sh3)"/>
+          <text x="200" y="100" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">OpenSSH Server (sshd)</text>
+          <line x1="200" y1="114" x2="200" y2="140" stroke="#8fbf30" stroke-width="2" marker-end="url(#arrowSsh)"/>
+          <text x="268" y="132" font-size="9" fill="#888">Linux auth</text>
+
+          <rect x="130" y="144" width="140" height="38" rx="8" fill="#fff" stroke="#4a8c2a" stroke-width="1.5" filter="url(#sh3)"/>
+          <text x="200" y="168" text-anchor="middle" font-size="12" font-weight="600" fill="#1a3a0a">Shell Session</text>
+        </svg>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h3>Install OpenSSH Server</h3>
+        </div>
+        <p>OpenSSH server is typically pre-installed on RHEL. Verify:</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>rpm -q openssh-server</code></pre>
+        </div>
+        <p>If not installed:</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>sudo dnf install -y openssh-server</code></pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h3>Enable and Start sshd</h3>
+        </div>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>sudo systemctl enable --now sshd.service</code></pre>
+        </div>
+        <p>Verify:</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>systemctl is-active sshd.service</code></pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <h3>Configure the Firewall</h3>
+        </div>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>sudo firewall-cmd --permanent --add-service=ssh
+sudo firewall-cmd --reload</code></pre>
+        </div>
+        <p>Verify:</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>sudo firewall-cmd --list-services</code></pre>
+        </div>
+        <p><span class="ic">ssh</span> should appear in the output.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-number">4</div>
+          <h3>Verify SSH Access</h3>
+        </div>
+        <p>Check the listener:</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>sudo ss -lntp | grep ':22'</code></pre>
+        </div>
+        <p>Test from the Guacamole server:</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>ssh &lt;username&gt;@&lt;RHEL_SERVER_IP&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-number">5</div>
+          <h3>Optional: SSH Hardening</h3>
+        </div>
+        <p>Edit <span class="ic">/etc/ssh/sshd_config</span> with recommended settings:</p>
+        <div class="code-block">
+          <div class="code-label"><span>sshd_config</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>PermitRootLogin no
+PasswordAuthentication yes
+PubkeyAuthentication yes
+MaxAuthTries 3
+ClientAliveInterval 300
+ClientAliveCountMax 2</code></pre>
+        </div>
+        <p>Restart sshd after changes:</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>sudo systemctl restart sshd.service</code></pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-number">6</div>
+          <h3>Optional: Key-Based Authentication</h3>
+        </div>
+        <p>Generate a key pair and copy it to the target:</p>
+        <div class="code-block">
+          <div class="code-label"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>ssh-keygen -t ed25519 -C "guacamole-access"
+ssh-copy-id &lt;username&gt;@&lt;RHEL_SERVER_IP&gt;</code></pre>
+        </div>
+        <div class="callout callout-info">
+          <span class="callout-icon">&#128161;</span>
+          <div>The private key can then be pasted into the Guacamole SSH connection configuration under <strong>Authentication</strong>.</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Troubleshooting Section -->
+  <!-- ==================== TROUBLESHOOTING ==================== -->
   <section id="troubleshooting" class="guide-section">
-    <h2 style="font-size:1.6rem; margin-bottom:1rem; color:var(--green-dark);">Troubleshooting</h2>
+    <h2 class="section-title">Troubleshooting</h2>
 
-    <h3 style="margin-bottom:0.75rem; color:var(--green-mid);">Guacamole Server</h3>
+    <h3 style="margin-bottom:0.75rem; color:var(--green-mid); font-family:'Red Hat Display',sans-serif;">Guacamole Server</h3>
     <div class="table-wrap" style="margin-bottom:2rem;">
       <table>
-        <thead>
-          <tr><th>Symptom</th><th>Check</th><th>Cause / Action</th></tr>
-        </thead>
+        <thead><tr><th>Symptom</th><th>Check</th><th>Cause / Action</th></tr></thead>
         <tbody>
-          <tr>
-            <td>Guacamole UI unavailable</td>
-            <td><span class="inline-code">podman ps</span></td>
-            <td>Verify the <span class="inline-code">guacamole</span> container is running and port 8080 is published</td>
-          </tr>
-          <tr>
-            <td>Guacamole fails to start</td>
-            <td><span class="inline-code">podman logs guacamole</span></td>
-            <td>Check PostgreSQL and guacd environment variables</td>
-          </tr>
-          <tr>
-            <td>Database errors</td>
-            <td><span class="inline-code">podman logs guac-postgres</span></td>
-            <td>Verify schema initialization and DB credentials</td>
-          </tr>
-          <tr>
-            <td>RDP connection fails immediately</td>
-            <td><span class="inline-code">podman logs guacd --tail 50</span></td>
-            <td>Check target hostname, port 3389, and RDP gateway credentials</td>
-          </tr>
-          <tr>
-            <td>RDP connection times out</td>
-            <td>Test network connectivity from Guacamole host</td>
-            <td>Target port 3389 may not be reachable</td>
-          </tr>
-          <tr>
-            <td>Certificate validation error</td>
-            <td>Enable <em>Ignore server certificate</em></td>
-            <td>Expected with self-signed GRD certificate</td>
-          </tr>
-          <tr>
-            <td>Need more RDP detail</td>
-            <td>Run guacd with <span class="inline-code">LOG_LEVEL=debug</span></td>
-            <td>Inspect FreeRDP negotiation and auth errors</td>
-          </tr>
+          <tr><td>Guacamole UI unavailable</td><td><span class="ic">podman ps</span></td><td>Verify the <span class="ic">guacamole</span> container is running and port 8080 is published</td></tr>
+          <tr><td>Guacamole fails to start</td><td><span class="ic">podman logs guacamole</span></td><td>Check PostgreSQL and guacd environment variables</td></tr>
+          <tr><td>Database errors</td><td><span class="ic">podman logs guac-postgres</span></td><td>Verify schema initialization and DB credentials</td></tr>
+          <tr><td>RDP connection fails immediately</td><td><span class="ic">podman logs guacd --tail 50</span></td><td>Check target hostname, port 3389, and RDP gateway credentials</td></tr>
+          <tr><td>RDP connection times out</td><td>Test network connectivity from Guacamole host</td><td>Target port 3389 may not be reachable</td></tr>
+          <tr><td>Certificate validation error</td><td>Enable <em>Ignore server certificate</em></td><td>Expected with self-signed GRD certificate</td></tr>
+          <tr><td>Need more RDP detail</td><td>Run guacd with <span class="ic">LOG_LEVEL=debug</span></td><td>Inspect FreeRDP negotiation and auth errors</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3 style="margin-bottom:0.75rem; color:var(--green-mid);">RHEL Client (GNOME Remote Desktop)</h3>
+    <h3 style="margin-bottom:0.75rem; color:var(--green-mid); font-family:'Red Hat Display',sans-serif;">GNOME Remote Desktop (RDP Client)</h3>
+    <div class="table-wrap" style="margin-bottom:2rem;">
+      <table>
+        <thead><tr><th>Symptom</th><th>Check</th><th>Cause / Fix</th></tr></thead>
+        <tbody>
+          <tr><td>3389 not listening</td><td><span class="ic">grdctl --system status</span></td><td>Ensure RDP is enabled</td></tr>
+          <tr><td>TLS certificate/key not configured</td><td><span class="ic">ls -l /etc/gnome-remote-desktop/rdp-tls.*</span></td><td>GRD daemon cannot read the certificate/key</td></tr>
+          <tr><td>TLS key owned by root:root</td><td><span class="ic">systemctl show gnome-remote-desktop -p User</span></td><td>Change ownership to <span class="ic">gnome-remote-desktop:gnome-remote-desktop</span></td></tr>
+          <tr><td>GRD active but no RDP listener</td><td><span class="ic">journalctl -u gnome-remote-desktop</span></td><td>Usually incomplete TLS configuration</td></tr>
+          <tr><td>GDM does not appear</td><td><span class="ic">systemctl status gdm</span></td><td>Install/enable GDM and graphical target</td></tr>
+          <tr><td>Login succeeds but RDP disconnects</td><td>Search journal for <span class="ic">Couldn't connect pipewire context</span></td><td>User PipeWire session is not running</td></tr>
+          <tr><td>No <span class="ic">/run/user/&lt;UID&gt;/pipewire-0</span></td><td>Check PipeWire user services</td><td>PipeWire has not started for that user</td></tr>
+          <tr><td>TPM credentials failed (fallback)</td><td>None required</td><td>Informational on systems without a TPM</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-bottom:0.75rem; color:var(--green-mid); font-family:'Red Hat Display',sans-serif;">SSH Client</h3>
     <div class="table-wrap">
       <table>
-        <thead>
-          <tr><th>Symptom</th><th>Check</th><th>Cause / Fix</th></tr>
-        </thead>
+        <thead><tr><th>Symptom</th><th>Check</th><th>Cause / Fix</th></tr></thead>
         <tbody>
-          <tr>
-            <td>3389 not listening</td>
-            <td><span class="inline-code">grdctl --system status</span></td>
-            <td>Ensure RDP is enabled</td>
-          </tr>
-          <tr>
-            <td>TLS certificate/key not configured</td>
-            <td><span class="inline-code">ls -l /etc/gnome-remote-desktop/rdp-tls.*</span></td>
-            <td>GRD daemon cannot read the certificate/key</td>
-          </tr>
-          <tr>
-            <td>TLS key owned by root:root</td>
-            <td><span class="inline-code">systemctl show gnome-remote-desktop -p User</span></td>
-            <td>Change ownership to <span class="inline-code">gnome-remote-desktop:gnome-remote-desktop</span></td>
-          </tr>
-          <tr>
-            <td>GRD active but no RDP listener</td>
-            <td><span class="inline-code">journalctl -u gnome-remote-desktop</span></td>
-            <td>Usually incomplete TLS configuration</td>
-          </tr>
-          <tr>
-            <td>GDM does not appear</td>
-            <td><span class="inline-code">systemctl status gdm</span></td>
-            <td>Install/enable GDM and graphical target</td>
-          </tr>
-          <tr>
-            <td>Login succeeds but RDP disconnects</td>
-            <td>Search journal for <span class="inline-code">Couldn't connect pipewire context</span></td>
-            <td>User PipeWire session is not running</td>
-          </tr>
-          <tr>
-            <td>No <span class="inline-code">/run/user/&lt;UID&gt;/pipewire-0</span></td>
-            <td>Check PipeWire user services</td>
-            <td>PipeWire has not started for that user</td>
-          </tr>
-          <tr>
-            <td>TPM credentials failed (fallback)</td>
-            <td>None required</td>
-            <td>Informational on systems without a TPM</td>
-          </tr>
-          <tr>
-            <td>Need complete diagnostics</td>
-            <td><span class="inline-code">journalctl -b | grep -E 'gnome-remote|pipewire|wireplumber'</span></td>
-            <td>Correlate GRD handover with user-session startup</td>
-          </tr>
+          <tr><td>Connection refused</td><td><span class="ic">ss -lntp | grep :22</span></td><td>sshd is not running</td></tr>
+          <tr><td>Connection timeout</td><td><span class="ic">firewall-cmd --list-services</span></td><td>SSH not allowed through firewall</td></tr>
+          <tr><td>Authentication failure</td><td><span class="ic">journalctl -u sshd -n 20</span></td><td>Wrong credentials or key mismatch</td></tr>
+          <tr><td>Permission denied (publickey)</td><td><span class="ic">sshd_config</span></td><td>Password authentication may be disabled</td></tr>
+          <tr><td>Guacamole SSH shows blank screen</td><td><span class="ic">podman logs guacd --tail 20</span></td><td>Check guacd connectivity to target port 22</td></tr>
         </tbody>
       </table>
     </div>
@@ -1152,25 +1429,31 @@ sudo journalctl -u gnome-remote-desktop.service -n 50 --no-pager</code></pre>
 
 <!-- Footer -->
 <footer class="footer">
-  <p>
-    RHEL Guacamole &mdash; Built with Apache Guacamole 1.6.0 on RHEL with Podman
-  </p>
+  <p>RHEL Guacamole &mdash; Built with Apache Guacamole 1.6.0 on RHEL with Podman</p>
   <p style="margin-top:0.5rem;">
     <a href="https://guacamole.apache.org/" target="_blank" rel="noopener">Apache Guacamole Docs</a>
     &nbsp;&middot;&nbsp;
     <a href="https://podman.io/" target="_blank" rel="noopener">Podman</a>
     &nbsp;&middot;&nbsp;
-    <a href="https://github.com/" target="_blank" rel="noopener">View on GitHub</a>
+    <a href="https://github.com/kubealex/rhel-guacamole" target="_blank" rel="noopener">View on GitHub</a>
   </p>
 </footer>
 
 <script>
-function showSection(id) {
+function showSection(id, btn) {
   document.querySelectorAll('.guide-section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  event.currentTarget.classList.add('active');
+  btn.classList.add('active');
   window.scrollTo({ top: document.querySelector('.nav-bar').offsetTop, behavior: 'smooth' });
+}
+
+function showSubSection(id, btn) {
+  const parent = btn.closest('.guide-section');
+  parent.querySelectorAll('.sub-section').forEach(s => s.classList.remove('active'));
+  parent.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
 }
 
 function copyCode(btn) {

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/avocado.svg" width="80" alt="Avocado">
+  <img src="docs/assets/avocado-fedora.svg" width="100" alt="Avocado with Red Hat Fedora">
   <img src="docs/assets/guacamole.svg" width="160" alt="Guacamole Bowl">
 </p>
 
@@ -20,7 +20,7 @@
 
 ## What is this?
 
-A complete guide to deploying [Apache Guacamole](https://guacamole.apache.org/) on RHEL using rootless Podman containers, and configuring RHEL workstations as RDP targets with GNOME Remote Desktop.
+A complete guide to deploying [Apache Guacamole](https://guacamole.apache.org/) on RHEL using rootless Podman containers, and configuring RHEL machines as RDP and SSH targets.
 
 Access your Linux desktops and servers from any browser — no client software needed.
 
@@ -46,7 +46,8 @@ PostgreSQL
 | Guide | Description |
 |---|---|
 | [Server Setup](README_SERVER.md) | Deploy Guacamole with Podman (PostgreSQL + guacd + web app) |
-| [Client Setup](README_CLIENT.md) | Configure RHEL 10 GNOME Remote Desktop for incoming RDP |
+| [Client Setup — RDP](README_CLIENT_RDP.md) | Configure RHEL 10 GNOME Remote Desktop for graphical sessions |
+| [Client Setup — SSH](README_CLIENT_SSH.md) | Configure OpenSSH for terminal sessions |
 
 ## Quick Start
 
@@ -59,13 +60,22 @@ podman network create guac-net
 
 Then follow the [full server guide](README_SERVER.md) to start the three containers.
 
-**On each RHEL workstation:**
+**On each RHEL workstation (RDP):**
 
 ```bash
 sudo dnf install -y gdm gnome-shell gnome-remote-desktop pipewire wireplumber
 ```
 
-Then follow the [full client guide](README_CLIENT.md) to configure RDP access.
+Then follow the [RDP client guide](README_CLIENT_RDP.md) to configure remote desktop access.
+
+**On each RHEL server (SSH):**
+
+```bash
+sudo dnf install -y openssh-server
+sudo systemctl enable --now sshd.service
+```
+
+Then follow the [SSH client guide](README_CLIENT_SSH.md) for firewall and hardening.
 
 ## License
 
